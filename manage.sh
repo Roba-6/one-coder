@@ -172,6 +172,8 @@ case $1 in
     # Start backend
     if [ "$IS_BACK" != "" ] || [ "$IS_NOT_ALL" = "" ]; then
       cd "$PROJECT_DIR/backend" || exit
+      set -a
+      source ../.env
 
       if [ "$IS_PROD" = "" ]; then
         # Development Mode
