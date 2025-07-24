@@ -1,6 +1,8 @@
 from logging.config import fileConfig
 
 from alembic import context
+
+# from one_coder_api.models import *
 from one_public_api.core.settings import settings
 from one_public_api.models import *  # noqa
 from sqlalchemy import engine_from_config, pool

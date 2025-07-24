@@ -177,10 +177,10 @@ case $1 in
 
       if [ "$IS_PROD" = "" ]; then
         # Development Mode
-        process="poetry run uvicorn one_public_api:app --reload"
+        process="poetry run uvicorn one_coder_api:app --reload"
       else
         # Production Mode
-        process="poetry run uvicorn one_public_api:app --host 0.0.0.0"
+        process="poetry run uvicorn one_coder_api:app --host 0.0.0.0"
       fi
       run_process "Start the One Public API server in $mode mode\n" "$process"
     fi
