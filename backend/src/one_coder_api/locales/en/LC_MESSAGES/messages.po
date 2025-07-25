@@ -1,0 +1,40 @@
+# English translations for One Public API.
+# Copyright (C) 2025 Roba
+# This file is distributed under the same license as the One Public API
+# project.
+# Roba <roba@one-coder.com>, 2025.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: One Public API 0.1.0-alpha\n"
+"Report-Msgid-Bugs-To: roba@one-coder.com\n"
+"POT-Creation-Date: 2025-07-25 17:24+0900\n"
+"PO-Revision-Date: 2025-05-25 16:37+0900\n"
+"Last-Translator: Roba <roba@one-coder.com>\n"
+"Language: en\n"
+"Language-Team: en <roba@one-coder.com>\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.17.0\n"
+
+#: src/one_coder_api/models/category_model.py:13
+msgid "The name of the category."
+msgstr ""
+
+#: src/one_coder_api/models/category_model.py:17
+msgid "The alias of the category."
+msgstr ""
+
+#: src/one_coder_api/models/category_model.py:22
+msgid "Additional details or explanation about the category."
+msgstr ""
+
+#: src/one_coder_api/routers/category_router.py:22
+msgid "Categories"
+msgstr ""
+
+#: src/one_coder_api/routers/category_router.py:30
+msgid "List Public Categories"
+msgstr ""
