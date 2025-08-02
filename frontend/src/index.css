@@ -1,0 +1,6 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+p {
+    @apply w-full flex flex-col items-center gap-8;
+}
