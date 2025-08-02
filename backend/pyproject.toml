@@ -1,0 +1,59 @@
+[project]
+name = "one-coder-api"
+version = "0.1.0-alpha"
+description = "This package provides the API layer of the One Coder Site."
+license = {file = "../LICENSE"}
+authors = [
+    {name = "Roba",email = "roba@one-coder.com"}
+]
+readme = "README.md"
+requires-python = ">=3.11,<4.0"
+
+[tool.poetry]
+name = "one-coder-api"
+version = "0.1.0-alpha"
+description = "This package provides the API layer of the One Coder Site."
+authors = ["Roba <roba@one-coder.com>"]
+packages = [{ include = "one_coder_api", from = "src" }]
+include = ["src/one_coder_api/locales/**/*.mo"]
+
+[tool.poetry.dependencies]
+python = ">=3.11,<4.0"
+one-public-api = {path = "../../one-public-framework/backend/dist/one_public_api-0.1.0a0-py3-none-any.whl"}
+
+[tool.poetry.group.dev.dependencies]
+alembic = "^1.16.1"
+babel = "^2.17.0"
+docformatter = "^1.7.7"
+httpx = "^0.28.1"
+mypy = "^1.16.0"
+pytest = "^8.4.0"
+ruff = "^0.11.13"
+types-passlib = "^1.7.7.20250602"
+pre-commit = "^4.2.0"
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.mypy]
+mypy_path = "src"
+python_version = "3.11"
+strict = true
+exclude = [".venv", "migrations/versions", "tests"]
+
+[tool.black]
+line-length = 88
+target-version = ["py311"]
+
+[tool.ruff]
+line-length = 88
+target-version = "py311"
+exclude = [".venv", "__pycache__", "migrations"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I"]
+
+[tool.docformatter]
+pre-summary-newline = true
+recursive = true

@@ -1,0 +1,17 @@
+# One Public Framework
+/logs
+/media
+
+# macOS
+.DS_Store
+
+# PyCharm
+*.iml
+.idea/*
+!.idea/watcherTasks.xml
+
+# VS Code
+.vscode/
+
+# Other
+*.sqlite3
