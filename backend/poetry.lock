@@ -797,11 +797,11 @@ optional = false
 python-versions = ">=3.11,<4.0"
 groups = ["main"]
 files = [
-    {file = "one_public_api-0.1.0a0-py3-none-any.whl", hash = "sha256:8a202ebdbc5dba10dff6fda135d22e5fe54368005714dc5b3ce4c989023fc15a"},
+    {file = "one_public_api-0.1.0a0-py3-none-any.whl", hash = "sha256:b05960811680e6fa7148a23f7bbb0256942cf8a1c269e5f341020d5ba649b1df"},
 ]
 
 [package.dependencies]
-bcrypt = ">=4.3.0,<5.0.0"
+bcrypt = ">=4.0.1,<5.0.0"
 fastapi = ">=0.115.12,<0.116.0"
 passlib = {version = ">=1.7.4,<2.0.0", extras = ["bcrypt"]}
 psycopg2-binary = ">=2.9.10,<3.0.0"
