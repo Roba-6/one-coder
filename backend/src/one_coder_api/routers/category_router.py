@@ -18,6 +18,7 @@ from one_coder_api.schemas.category_schema import (
     CategoryCreateRequest,
     CategoryPublicResponse,
     CategoryResponse,
+    CategoryUpdateRequest,
 )
 from one_coder_api.services.category_service import CategoryService
 
@@ -96,4 +97,40 @@ def retrieve_admin_api(
 ) -> ResponseSchema[CategoryResponse]:
     return create_response_data(
         CategoryResponse, cats.get_one_by_id(target_id), detail=cats.detail
+    )
+
+
+@admin_router.put(
+    opa_cst.ROUTER_COMMON_ADMIN_WITH_ID,
+    name="SYS-COF-A-UPD",
+    summary=_("Update Configuration"),
+    response_model=ResponseSchema[CategoryResponse],
+)
+def update_admin_api(
+    current_user: Annotated[User, Depends(get_current_user)],
+    cats: Annotated[CategoryService, Depends()],
+    data: CategoryUpdateRequest,
+    target_id: UUID = Path(description=_("The ID of the category item to be updated")),
+) -> ResponseSchema[CategoryResponse]:
+    return create_response_data(
+        CategoryResponse,
+        cats.update_one_by_id_with_user(
+            target_id, Category(**data.model_dump()), current_user
+        ),
+        detail=cats.detail,
+    )
+
+
+@admin_router.delete(
+    opa_cst.ROUTER_COMMON_ADMIN_WITH_ID,
+    name="SYS-COF-A-DEL",
+    summary=_("Delete Configuration"),
+    response_model=ResponseSchema[CategoryResponse],
+)
+def destroy_admin_api(
+    cats: Annotated[CategoryService, Depends()],
+    target_id: UUID = Path(description=_("The ID of the category item to be deleted")),
+) -> ResponseSchema[CategoryResponse]:
+    return create_response_data(
+        CategoryResponse, cats.delete_one_by_id2(target_id), detail=cats.detail
     )

@@ -1,3 +1,4 @@
+from enum import IntEnum
 from typing import Optional
 from uuid import UUID
 
@@ -12,11 +13,21 @@ from sqlmodel import Field, Relationship, SQLModel
 from one_coder_api.common import constants
 
 
+class CategoryType(IntEnum):
+    CATEGORY = 0
+    SINGLE = 1
+    EXTERNAL = 2
+
+
 class CategoryBase(SQLModel):
     name: Optional[str] = Field(
         default=None,
         max_length=opa_cst.MAX_LENGTH_255,
         description=_("The name of the category."),
+    )
+    type: Optional[CategoryType] = Field(
+        default=None,
+        description=_("The type of the category."),
     )
     alias: Optional[str] = Field(
         default=None,
@@ -57,6 +68,11 @@ class Category(
         max_length=opa_cst.MAX_LENGTH_255,
         description=_("The name of the category."),
     )
+    type: CategoryType = Field(
+        default=CategoryType.CATEGORY,
+        nullable=False,
+        description=_("The type of the category."),
+    )
     is_enabled: bool = Field(
         default=False,
         nullable=False,
@@ -68,6 +84,7 @@ class Category(
             "foreign_keys": "[Category.parent_id]",
             "primaryjoin": "Category.parent_id==Category.id",
             "remote_side": "[Category.id]",
+            "lazy": "selectin",
         }
     )
     creator: Optional["User"] = Relationship(

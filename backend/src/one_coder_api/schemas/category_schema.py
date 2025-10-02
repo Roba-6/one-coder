@@ -9,11 +9,16 @@ from one_public_api.schemas.response_schema import example_audit, example_id
 from one_public_api.schemas.user_schema import UserPublicResponse, example_user
 from sqlmodel import Field
 
-from one_coder_api.models.category_model import CategoryBase, CategoryStatus
+from one_coder_api.models.category_model import (
+    CategoryBase,
+    CategoryStatus,
+    CategoryType,
+)
 
 example_base: Dict[str, Any] = {
     "name": "Programming",
     "alias": "programming",
+    "type": CategoryType.CATEGORY,
     "description": "Topics related to coding, software development, "
     "and programming tools.",
 }
