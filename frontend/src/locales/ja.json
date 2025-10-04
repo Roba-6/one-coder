@@ -1,0 +1,9 @@
+{
+  "labels.category.name": "カテゴリー名",
+  "labels": {
+    "category": {
+      "labels.category.name": "カテゴリー名",
+      "labels.category.alias": "別名"
+    }
+  }
+}

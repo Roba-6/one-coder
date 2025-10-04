@@ -1,12 +1,14 @@
 import './index.css'
 
-import { App } from 'one-public-ui'
-import { store } from 'one-public-ui'
+import { App, store } from 'one-public-ui'
 import i18n from 'one-public-ui/locales/configs'
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import { Provider } from 'react-redux'
 import { Route } from 'react-router'
+
+import CategoryEditPage from '@/features/categories/pages/edit-page.tsx'
+import CategoryListPage from '@/features/categories/pages/list-page.tsx'
 
 import Box from './box.tsx'
 
@@ -23,10 +25,18 @@ i18n.addResources('ja', 'translation', {
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <Provider store={store}>
-      <div>{import.meta.env.UI_NAME}</div>
-      <App>
-        <Route path="/aaa" element={<Box />} />
-      </App>
+      <App
+        children={{
+          adminRouter: (
+            <>
+              <Route path="categories/edit" element={<CategoryEditPage />} />
+              <Route path="categories" element={<CategoryListPage />} />
+              <Route path="ccb" element={<div>{import.meta.env.UI_NAME}</div>} />
+            </>
+          ),
+          publicRouter: <Route path="/aaa" element={<Box />} />,
+        }}
+      />
     </Provider>
   </StrictMode>
 )

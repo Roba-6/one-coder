@@ -19,7 +19,7 @@ include = ["src/one_coder_api/locales/**/*.mo"]
 
 [tool.poetry.dependencies]
 python = ">=3.11,<4.0"
-one-public-api = {path = "../../one-public-framework/backend/dist/one_public_api-0.1.0a0-py3-none-any.whl"}
+one-public-api = {path = "../../one-public-framework/backend/dist/one_public_api-0.1.0a3-py3-none-any.whl"}
 
 [tool.poetry.group.dev.dependencies]
 alembic = "^1.16.1"

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: One Public API 0.1.0-alpha\n"
 "Report-Msgid-Bugs-To: roba@one-coder.com\n"
-"POT-Creation-Date: 2025-07-25 17:24+0900\n"
+"POT-Creation-Date: 2025-09-26 23:02+0900\n"
 "PO-Revision-Date: 2025-05-25 16:37+0900\n"
 "Last-Translator: Roba <roba@one-coder.com>\n"
 "Language: en\n"
@@ -19,22 +19,101 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.17.0\n"
 
-#: src/one_coder_api/models/category_model.py:13
+#: src/one_coder_api/models/category_model.py:26
+#: src/one_coder_api/models/category_model.py:69
+#: src/one_coder_api/schemas/category_schema.py:46
 msgid "The name of the category."
 msgstr ""
 
-#: src/one_coder_api/models/category_model.py:17
+#: src/one_coder_api/models/category_model.py:30
+#: src/one_coder_api/models/category_model.py:74
+msgid "The type of the category."
+msgstr ""
+
+#: src/one_coder_api/models/category_model.py:37
 msgid "The alias of the category."
 msgstr ""
 
-#: src/one_coder_api/models/category_model.py:22
+#: src/one_coder_api/models/category_model.py:43
 msgid "Additional details or explanation about the category."
 msgstr ""
 
-#: src/one_coder_api/routers/category_router.py:22
-msgid "Categories"
+#: src/one_coder_api/models/category_model.py:50
+#: src/one_coder_api/schemas/category_schema.py:30
+#: src/one_coder_api/schemas/category_schema.py:67
+msgid "Parent category"
+msgstr ""
+
+#: src/one_coder_api/models/category_model.py:57
+#: src/one_coder_api/models/category_model.py:79
+msgid "Whether the category is enabled"
+msgstr ""
+
+#: src/one_coder_api/models/post_model.py:19
+#: src/one_coder_api/models/post_model.py:44
+msgid "The title of the post."
+msgstr ""
+
+#: src/one_coder_api/models/post_model.py:24
+msgid "The overview of the post."
+msgstr ""
+
+#: src/one_coder_api/models/post_model.py:29
+msgid "The content of the post."
+msgstr ""
+
+#: src/one_coder_api/models/post_model.py:34
+msgid "Assigned Category ID."
 msgstr ""
 
 #: src/one_coder_api/routers/category_router.py:30
+msgid "Categories"
+msgstr ""
+
+#: src/one_coder_api/routers/category_router.py:38
 msgid "List Public Categories"
+msgstr ""
+
+#: src/one_coder_api/routers/category_router.py:56
+msgid "List Categories"
+msgstr ""
+
+#: src/one_coder_api/routers/category_router.py:71
+msgid "Create Category"
+msgstr ""
+
+#: src/one_coder_api/routers/category_router.py:89
+msgid "Get Category"
+msgstr ""
+
+#: src/one_coder_api/routers/category_router.py:95
+msgid "The ID of the Category item to be retrieved"
+msgstr ""
+
+#: src/one_coder_api/routers/category_router.py:106
+msgid "Update Configuration"
+msgstr ""
+
+#: src/one_coder_api/routers/category_router.py:113
+msgid "The ID of the category item to be updated"
+msgstr ""
+
+#: src/one_coder_api/routers/category_router.py:127
+msgid "Delete Configuration"
+msgstr ""
+
+#: src/one_coder_api/routers/category_router.py:132
+msgid "The ID of the category item to be deleted"
+msgstr ""
+
+#: src/one_coder_api/schemas/category_schema.py:71
+msgid "Creator"
+msgstr ""
+
+#: src/one_coder_api/schemas/category_schema.py:75
+msgid "Updater"
+msgstr ""
+
+#: src/one_coder_api/services/category_service.py:42
+msgid "This record might be referenced by other data."
 msgstr ""

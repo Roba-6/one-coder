@@ -1,4 +1,5 @@
 import './App.css'
+import '@/locales/configs'
 
 import i18n from 'one-public-ui/locales/configs'
 import { useState } from 'react'
