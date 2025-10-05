@@ -9,6 +9,8 @@ import { Route } from 'react-router'
 
 import CategoryEditPage from '@/features/categories/pages/edit-page.tsx'
 import CategoryListPage from '@/features/categories/pages/list-page.tsx'
+import PostEditPage from '@/features/posts/pages/edit-page.tsx'
+import PostListPage from '@/features/posts/pages/list-page.tsx'
 
 import Box from './box.tsx'
 
@@ -31,6 +33,8 @@ createRoot(document.getElementById('root')!).render(
             <>
               <Route path="categories/edit" element={<CategoryEditPage />} />
               <Route path="categories" element={<CategoryListPage />} />
+              <Route path="posts/edit" element={<PostEditPage />} />
+              <Route path="posts" element={<PostListPage />} />
               <Route path="ccb" element={<div>{import.meta.env.UI_NAME}</div>} />
             </>
           ),
