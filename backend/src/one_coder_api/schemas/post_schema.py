@@ -9,30 +9,22 @@ from one_public_api.schemas.response_schema import example_audit, example_id
 from one_public_api.schemas.user_schema import UserPublicResponse, example_user
 from sqlmodel import Field
 
-from one_coder_api.models.category_model import (
-    CategoryBase,
-    CategoryStatus,
-    CategoryType,
-)
+from one_coder_api.models.post_model import PostBase
+from one_coder_api.schemas.category_schema import CategoryPublicResponse
 
 example_base: Dict[str, Any] = {
-    "name": "Programming",
-    "alias": "programming",
-    "type": CategoryType.CATEGORY,
-    "description": "Topics related to coding, software development, "
-    "and programming tools.",
-}
-example_status: Dict[str, Any] = {
-    "is_enabled": True,
+    "title": "Using Python on macOS",
+    "overview": "xxx.",
+    "content": "abc.",
+    "category_id": "56a98522-9fe6-4576-9f78-48e74a42a5e9",
 }
 
 # ----- Public Schemas -----------------------------------------------------------------
 
 
-class CategoryPublicResponse(CategoryBase, IdMixin):
-    parent: Optional["CategoryPublicResponse"] = Field(
-        default=None,
-        description=_("Parent category"),
+class PostPublicResponse(PostBase, IdMixin):
+    category: Optional[CategoryPublicResponse] = Field(
+        default=None, description=_("Category")
     )
 
     model_config = {
@@ -46,8 +38,8 @@ class CategoryPublicResponse(CategoryBase, IdMixin):
 # ----- Admin Schemas ------------------------------------------------------------------
 
 
-class CategoryCreateRequest(CategoryBase, CategoryStatus):
-    name: str = Field(
+class PostCreateRequest(PostBase):
+    title: str = Field(
         max_length=opa_cst.MAX_LENGTH_255,
         description=_("The name of the category."),
     )
@@ -55,23 +47,19 @@ class CategoryCreateRequest(CategoryBase, CategoryStatus):
     model_config = {
         "alias_generator": to_camel,
         "populate_by_name": True,
-        "json_schema_extra": {"examples": [{**example_base, **example_status}]},
+        "json_schema_extra": {"examples": [{**example_base}]},
     }
 
 
-class CategoryUpdateRequest(CategoryBase, CategoryStatus):
+class PostUpdateRequest(PostBase):
     model_config = {
         "alias_generator": to_camel,
         "populate_by_name": True,
-        "json_schema_extra": {"examples": [{**example_base, **example_status}]},
+        "json_schema_extra": {"examples": [{**example_base}]},
     }
 
 
-class CategoryResponse(CategoryPublicResponse, CategoryStatus, TimestampMixin):
-    parent: Optional["CategoryResponse"] = Field(
-        default=None,
-        description=_("Parent category"),
-    )
+class PostResponse(PostPublicResponse, TimestampMixin):
     creator: Optional[UserPublicResponse] = Field(
         default=None,
         description=_("Creator"),
@@ -87,7 +75,6 @@ class CategoryResponse(CategoryPublicResponse, CategoryStatus, TimestampMixin):
             "examples": [
                 {
                     **example_base,
-                    **example_status,
                     **example_audit,
                     **example_id,
                     "creator": example_user,

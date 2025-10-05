@@ -10,6 +10,7 @@ from one_public_api.models.system.user_model import User
 from sqlmodel import Field, Relationship, SQLModel
 
 from one_coder_api.common import constants
+from one_coder_api.models import Category
 
 
 class PostBase(SQLModel):
@@ -31,6 +32,8 @@ class PostBase(SQLModel):
     category_id: Optional[UUID] = Field(
         default=None,
         nullable=True,
+        foreign_key=constants.DB_PREFIX_OCA + "categories.id",
+        ondelete="RESTRICT",
         description=_("Assigned Category ID."),
     )
 
@@ -44,6 +47,13 @@ class Post(PostBase, TimestampMixin, MaintenanceMixin, IdMixin, table=True):
         description=_("The title of the post."),
     )
 
+    category: Optional[Category] = Relationship(
+        sa_relationship_kwargs={
+            "foreign_keys": "[Post.category_id]",
+            "primaryjoin": "Post.category_id==Category.id",
+            "remote_side": "[Category.id]",
+        }
+    )
     creator: Optional["User"] = Relationship(
         sa_relationship_kwargs={
             "foreign_keys": "[Post.created_by]",

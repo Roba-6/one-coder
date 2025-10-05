@@ -84,7 +84,6 @@ class Category(
             "foreign_keys": "[Category.parent_id]",
             "primaryjoin": "Category.parent_id==Category.id",
             "remote_side": "[Category.id]",
-            "lazy": "selectin",
         }
     )
     creator: Optional["User"] = Relationship(

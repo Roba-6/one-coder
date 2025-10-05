@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: One Public API 0.1.0-alpha\n"
 "Report-Msgid-Bugs-To: roba@one-coder.com\n"
-"POT-Creation-Date: 2025-09-26 23:02+0900\n"
+"POT-Creation-Date: 2025-10-05 11:26+0900\n"
 "PO-Revision-Date: 2025-05-25 16:37+0900\n"
 "Last-Translator: Roba <roba@one-coder.com>\n"
 "Language: ja\n"
@@ -21,7 +21,8 @@ msgstr ""
 
 #: src/one_coder_api/models/category_model.py:26
 #: src/one_coder_api/models/category_model.py:69
-#: src/one_coder_api/schemas/category_schema.py:46
+#: src/one_coder_api/schemas/category_schema.py:52
+#: src/one_coder_api/schemas/post_schema.py:44
 msgid "The name of the category."
 msgstr "カテゴリ名"
 
@@ -40,8 +41,8 @@ msgid "Additional details or explanation about the category."
 msgstr ""
 
 #: src/one_coder_api/models/category_model.py:50
-#: src/one_coder_api/schemas/category_schema.py:30
-#: src/one_coder_api/schemas/category_schema.py:67
+#: src/one_coder_api/schemas/category_schema.py:35
+#: src/one_coder_api/schemas/category_schema.py:73
 msgid "Parent category"
 msgstr ""
 
@@ -50,23 +51,23 @@ msgstr ""
 msgid "Whether the category is enabled"
 msgstr ""
 
-#: src/one_coder_api/models/post_model.py:19
-#: src/one_coder_api/models/post_model.py:44
+#: src/one_coder_api/models/post_model.py:20
+#: src/one_coder_api/models/post_model.py:47
 #, fuzzy
 msgid "The title of the post."
 msgstr "カテゴリ名"
 
-#: src/one_coder_api/models/post_model.py:24
+#: src/one_coder_api/models/post_model.py:25
 #, fuzzy
 msgid "The overview of the post."
 msgstr "カテゴリ名"
 
-#: src/one_coder_api/models/post_model.py:29
+#: src/one_coder_api/models/post_model.py:30
 #, fuzzy
 msgid "The content of the post."
 msgstr "カテゴリ名"
 
-#: src/one_coder_api/models/post_model.py:34
+#: src/one_coder_api/models/post_model.py:37
 msgid "Assigned Category ID."
 msgstr ""
 
@@ -98,8 +99,9 @@ msgid "The ID of the Category item to be retrieved"
 msgstr "カテゴリー名の別名（URL に表示される）。"
 
 #: src/one_coder_api/routers/category_router.py:106
-msgid "Update Configuration"
-msgstr ""
+#, fuzzy
+msgid "Update Category"
+msgstr "カテゴリー"
 
 #: src/one_coder_api/routers/category_router.py:113
 #, fuzzy
@@ -107,22 +109,81 @@ msgid "The ID of the category item to be updated"
 msgstr "カテゴリー名の別名（URL に表示される）。"
 
 #: src/one_coder_api/routers/category_router.py:127
-msgid "Delete Configuration"
-msgstr ""
+#, fuzzy
+msgid "Delete Category"
+msgstr "カテゴリー"
 
 #: src/one_coder_api/routers/category_router.py:132
 #, fuzzy
 msgid "The ID of the category item to be deleted"
 msgstr "カテゴリー名の別名（URL に表示される）。"
 
-#: src/one_coder_api/schemas/category_schema.py:71
+#: src/one_coder_api/routers/post_router.py:30
+msgid "Posts"
+msgstr ""
+
+#: src/one_coder_api/routers/post_router.py:38
+#, fuzzy
+msgid "List Public Posts"
+msgstr "公開カテゴリー一覧"
+
+#: src/one_coder_api/routers/post_router.py:56
+msgid "List Posts"
+msgstr ""
+
+#: src/one_coder_api/routers/post_router.py:69
+msgid "Create Post"
+msgstr ""
+
+#: src/one_coder_api/routers/post_router.py:87
+msgid "Get Post"
+msgstr ""
+
+#: src/one_coder_api/routers/post_router.py:92
+#, fuzzy
+msgid "The ID of the Post item to be retrieved"
+msgstr "カテゴリー名の別名（URL に表示される）。"
+
+#: src/one_coder_api/routers/post_router.py:102
+msgid "Update Post"
+msgstr ""
+
+#: src/one_coder_api/routers/post_router.py:109
+#, fuzzy
+msgid "The ID of the post item to be updated"
+msgstr "カテゴリー名の別名（URL に表示される）。"
+
+#: src/one_coder_api/routers/post_router.py:123
+#, fuzzy
+msgid "Delete Post"
+msgstr "カテゴリ名"
+
+#: src/one_coder_api/routers/post_router.py:128
+#, fuzzy
+msgid "The ID of the post item to be deleted"
+msgstr "カテゴリー名の別名（URL に表示される）。"
+
+#: src/one_coder_api/schemas/category_schema.py:77
+#: src/one_coder_api/schemas/post_schema.py:65
 msgid "Creator"
 msgstr ""
 
-#: src/one_coder_api/schemas/category_schema.py:75
+#: src/one_coder_api/schemas/category_schema.py:81
+#: src/one_coder_api/schemas/post_schema.py:69
 msgid "Updater"
 msgstr ""
+
+#: src/one_coder_api/schemas/post_schema.py:27
+#, fuzzy
+msgid "Category"
+msgstr "カテゴリー"
 
 #: src/one_coder_api/services/category_service.py:42
 msgid "This record might be referenced by other data."
 msgstr ""
+
+#~ msgid "Update Configuration"
+#~ msgstr ""
+
+#~ msgid "Delete Configuration"
+#~ msgstr ""
