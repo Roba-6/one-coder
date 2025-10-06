@@ -30,9 +30,9 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from '@/common/components/ui/dropdown-menu'
+} from '@/common/components/ui/dropdown-menu.tsx'
 import { CONSTANT } from '@/common/constants.ts'
-import type { Post } from '@/features/posts/types/post'
+import type { Post } from '@/features/admin/posts/types/post'
 
 const PostListPage = (): React.ReactNode => {
   const nav = useNavigate()
@@ -110,7 +110,7 @@ const PostListPage = (): React.ReactNode => {
                 onClick={() => {
                   nav(
                     setUrlParams(
-                      CONSTANT.ROUTE_URL.ADMIN + CONSTANT.ROUTE_URL.ADMIN_POST_EDIT,
+                      CONSTANT.ROUTE_URL.ADMIN + CONSTANT.ROUTE_URL.POST_EDIT,
                       undefined,
                       { id: post.id! }
                     )

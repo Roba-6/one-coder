@@ -16,13 +16,16 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from '@/common/components/ui/form.tsx'
-import { Input } from '@/common/components/ui/input.tsx'
-import { Skeleton } from '@/common/components/ui/skeleton.tsx'
-import { CONSTANT } from '@/common/constants.ts'
-import type { Post, PostRequest } from '@/features/posts/types/post'
+} from '@/common/components/ui/form'
+import { Input } from '@/common/components/ui/input'
+import { Skeleton } from '@/common/components/ui/skeleton'
+import { CONSTANT } from '@/common/constants'
+import type {
+  Category,
+  CategoryRequest,
+} from '@/features/admin/categories/types/category'
 
-type TestType = 'title' | 'overview' | 'content'
+type TestType = 'name' | 'alias'
 
 i18n.addResourceBundle('en', 'translation', {
   labels: { category: { name: 'Category Name', alias: 'Category Alias' } },
@@ -34,8 +37,8 @@ i18n.addResourceBundle('ja', 'translation', {
 
 const testData = [
   {
-    name: 'title',
-    label: getLocalMessage('labels.category.title'),
+    name: 'name',
+    label: getLocalMessage('labels.category.name'),
     type: 'text',
     placeholder: 'Programming',
     defaultValue: '',
@@ -44,16 +47,8 @@ const testData = [
       .min(1, { message: getLocalMessage('Category Name is' + ' required') }),
   },
   {
-    name: 'overview',
-    label: getLocalMessage('labels.category.overview'),
-    type: 'text',
-    placeholder: 'Programming',
-    defaultValue: '',
-    validate: z.string().min(1, { message: getLocalMessage('Alias is required') }),
-  },
-  {
-    name: 'content',
-    label: getLocalMessage('labels.category.content'),
+    name: 'alias',
+    label: getLocalMessage('labels.category.alias'),
     type: 'text',
     placeholder: 'Programming',
     defaultValue: '',
@@ -61,16 +56,15 @@ const testData = [
   },
 ]
 
-const PostFormSchema = z.object({
-  title: z.string().min(1, { message: getLocalMessage('Title is required') }),
-  overview: z.string().min(1, { message: getLocalMessage('Overview is required') }),
-  content: z.string().min(1, { message: getLocalMessage('Content is required') }),
+const CategoryFormSchema = z.object({
+  name: z.string().min(1, { message: getLocalMessage('Category Name is required') }),
+  alias: z.string().min(1, { message: getLocalMessage('Alias is required') }),
 })
 
-const PostEditPage = (): React.ReactNode => {
+const CategoryEditPage = (): React.ReactNode => {
   const nav = useNavigate()
-  const form = useForm<z.infer<typeof PostFormSchema>>({
-    resolver: zodResolver(PostFormSchema),
+  const form = useForm<z.infer<typeof CategoryFormSchema>>({
+    resolver: zodResolver(CategoryFormSchema),
     defaultValues: arrayToObject(testData, 'name', 'defaultValue'),
   })
   const { search } = useLocation()
@@ -81,9 +75,9 @@ const PostEditPage = (): React.ReactNode => {
     console.debug('form: ', form)
     if (id) {
       console.debug('edit mode')
-      getApi<CommonResponse>(setUrlParams(CONSTANT.API_URL.POST_ADMIN_ID, id)).then(
+      getApi<CommonResponse>(setUrlParams(CONSTANT.API_URL.CATEGORY_ADMIN_ID, id)).then(
         (res: CommonResponse) => {
-          form.reset(res.results! as Post)
+          form.reset(res.results! as Category)
           setLoadingData(false)
         }
       )
@@ -92,14 +86,14 @@ const PostEditPage = (): React.ReactNode => {
     }
   }, [form, id])
 
-  const submitForm = (values: Post) => {
+  const submitForm = (values: Category) => {
     console.log(values)
     if (id) {
       putApi<CommonResponse>(
-        setUrlParams(CONSTANT.API_URL.POST_ADMIN_ID, id),
+        setUrlParams(CONSTANT.API_URL.CATEGORY_ADMIN_ID, id),
         values
       ).then((res: CommonResponse) => {
-        console.log(res.results! as Post)
+        console.log(res.results! as Category)
         // dispatch(
         //   enqueueMessage({
         //     message: {
@@ -113,23 +107,24 @@ const PostEditPage = (): React.ReactNode => {
         // )
       })
     } else {
-      postApi<CommonResponse>(CONSTANT.API_URL.POST_ADMIN, values as PostRequest).then(
-        (res: CommonResponse) => {
-          console.log(res.results! as Post)
-          // dispatch(
-          //   enqueueMessage({
-          //     message: {
-          //       code: 'S2000001',
-          //       message: 'Added Successfully',
-          //       detail: null,
-          //     },
-          //     status: 200,
-          //     type: 'success',
-          //   })
-          // )
-          nav(CONSTANT.ROUTE_URL.ADMIN + CONSTANT.ROUTE_URL.ADMIN_POST)
-        }
-      )
+      postApi<CommonResponse>(
+        CONSTANT.API_URL.CATEGORY_ADMIN,
+        values as CategoryRequest
+      ).then((res: CommonResponse) => {
+        console.log(res.results! as Category)
+        // dispatch(
+        //   enqueueMessage({
+        //     message: {
+        //       code: 'S2000001',
+        //       message: 'Added Successfully',
+        //       detail: null,
+        //     },
+        //     status: 200,
+        //     type: 'success',
+        //   })
+        // )
+        nav(CONSTANT.ROUTE_URL.ADMIN + CONSTANT.ROUTE_URL.ADMIN_CATEGORY)
+      })
     }
   }
 
@@ -191,4 +186,4 @@ const PostEditPage = (): React.ReactNode => {
     </Card>
   )
 }
-export default PostEditPage
+export default CategoryEditPage

@@ -15,13 +15,16 @@ export const CONSTANT = {
     ADMIN: '/admin',
     ADMIN_CATEGORY: '/categories',
     ADMIN_CATEGORY_EDIT: '/categories/edit',
-    ADMIN_POST: '/posts',
-    ADMIN_POST_EDIT: '/posts/edit',
+    POST: '/posts',
+    POST_ID: '/posts/:id',
+    POST_EDIT: '/posts/edit',
   },
 
   API_URL: {
     CATEGORY_ADMIN: '/categories/admin',
     CATEGORY_ADMIN_ID: '/categories/admin/:id',
+    POST: '/posts',
+    POST_ID: '/posts/:id',
     POST_ADMIN: '/posts/admin',
     POST_ADMIN_ID: '/posts/admin/:id',
   },

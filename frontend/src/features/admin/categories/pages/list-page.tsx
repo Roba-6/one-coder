@@ -30,9 +30,9 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from '@/common/components/ui/dropdown-menu'
+} from '@/common/components/ui/dropdown-menu.tsx'
 import { CONSTANT } from '@/common/constants.ts'
-import type { Category } from '@/features/categories/types/category'
+import type { Category } from '@/features/admin/categories/types/category'
 
 const CategoryListPage = (): React.ReactNode => {
   const nav = useNavigate()

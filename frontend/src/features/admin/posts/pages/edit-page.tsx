@@ -7,8 +7,8 @@ import { useForm } from 'react-hook-form'
 import { useLocation, useNavigate } from 'react-router'
 import { z } from 'zod'
 
-import { Button } from '@/common/components/ui/button.tsx'
-import { Card, CardContent } from '@/common/components/ui/card.tsx'
+import { Button } from '@/common/components/ui/button'
+import { Card, CardContent } from '@/common/components/ui/card'
 import {
   Form,
   FormControl,
@@ -16,13 +16,14 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from '@/common/components/ui/form.tsx'
-import { Input } from '@/common/components/ui/input.tsx'
-import { Skeleton } from '@/common/components/ui/skeleton.tsx'
-import { CONSTANT } from '@/common/constants.ts'
-import type { Category, CategoryRequest } from '@/features/categories/types/category'
+} from '@/common/components/ui/form'
+import { Input } from '@/common/components/ui/input'
+import { Skeleton } from '@/common/components/ui/skeleton'
+import { Textarea } from '@/common/components/ui/textarea'
+import { CONSTANT } from '@/common/constants'
+import type { Post, PostRequest } from '@/features/admin/posts/types/post'
 
-type TestType = 'name' | 'alias'
+type TestType = 'title' | 'overview' | 'content'
 
 i18n.addResourceBundle('en', 'translation', {
   labels: { category: { name: 'Category Name', alias: 'Category Alias' } },
@@ -34,8 +35,8 @@ i18n.addResourceBundle('ja', 'translation', {
 
 const testData = [
   {
-    name: 'name',
-    label: getLocalMessage('labels.category.name'),
+    name: 'title',
+    label: getLocalMessage('labels.category.title'),
     type: 'text',
     placeholder: 'Programming',
     defaultValue: '',
@@ -44,24 +45,33 @@ const testData = [
       .min(1, { message: getLocalMessage('Category Name is' + ' required') }),
   },
   {
-    name: 'alias',
-    label: getLocalMessage('labels.category.alias'),
+    name: 'overview',
+    label: getLocalMessage('labels.category.overview'),
     type: 'text',
+    placeholder: 'Programming',
+    defaultValue: '',
+    validate: z.string().min(1, { message: getLocalMessage('Alias is required') }),
+  },
+  {
+    name: 'content',
+    label: getLocalMessage('labels.category.content'),
+    type: 'textarea',
     placeholder: 'Programming',
     defaultValue: '',
     validate: z.string().min(1, { message: getLocalMessage('Alias is required') }),
   },
 ]
 
-const CategoryFormSchema = z.object({
-  name: z.string().min(1, { message: getLocalMessage('Category Name is required') }),
-  alias: z.string().min(1, { message: getLocalMessage('Alias is required') }),
+const PostFormSchema = z.object({
+  title: z.string().min(1, { message: getLocalMessage('Title is required') }),
+  overview: z.string().min(1, { message: getLocalMessage('Overview is required') }),
+  content: z.string().min(1, { message: getLocalMessage('Content is required') }),
 })
 
-const CategoryEditPage = (): React.ReactNode => {
+const PostEditPage = (): React.ReactNode => {
   const nav = useNavigate()
-  const form = useForm<z.infer<typeof CategoryFormSchema>>({
-    resolver: zodResolver(CategoryFormSchema),
+  const form = useForm<z.infer<typeof PostFormSchema>>({
+    resolver: zodResolver(PostFormSchema),
     defaultValues: arrayToObject(testData, 'name', 'defaultValue'),
   })
   const { search } = useLocation()
@@ -72,9 +82,9 @@ const CategoryEditPage = (): React.ReactNode => {
     console.debug('form: ', form)
     if (id) {
       console.debug('edit mode')
-      getApi<CommonResponse>(setUrlParams(CONSTANT.API_URL.CATEGORY_ADMIN_ID, id)).then(
+      getApi<CommonResponse>(setUrlParams(CONSTANT.API_URL.POST_ADMIN_ID, id)).then(
         (res: CommonResponse) => {
-          form.reset(res.results! as Category)
+          form.reset(res.results! as Post)
           setLoadingData(false)
         }
       )
@@ -83,14 +93,14 @@ const CategoryEditPage = (): React.ReactNode => {
     }
   }, [form, id])
 
-  const submitForm = (values: Category) => {
+  const submitForm = (values: Post) => {
     console.log(values)
     if (id) {
       putApi<CommonResponse>(
-        setUrlParams(CONSTANT.API_URL.CATEGORY_ADMIN_ID, id),
+        setUrlParams(CONSTANT.API_URL.POST_ADMIN_ID, id),
         values
       ).then((res: CommonResponse) => {
-        console.log(res.results! as Category)
+        console.log(res.results! as Post)
         // dispatch(
         //   enqueueMessage({
         //     message: {
@@ -104,24 +114,23 @@ const CategoryEditPage = (): React.ReactNode => {
         // )
       })
     } else {
-      postApi<CommonResponse>(
-        CONSTANT.API_URL.CATEGORY_ADMIN,
-        values as CategoryRequest
-      ).then((res: CommonResponse) => {
-        console.log(res.results! as Category)
-        // dispatch(
-        //   enqueueMessage({
-        //     message: {
-        //       code: 'S2000001',
-        //       message: 'Added Successfully',
-        //       detail: null,
-        //     },
-        //     status: 200,
-        //     type: 'success',
-        //   })
-        // )
-        nav(CONSTANT.ROUTE_URL.ADMIN + CONSTANT.ROUTE_URL.ADMIN_CATEGORY)
-      })
+      postApi<CommonResponse>(CONSTANT.API_URL.POST_ADMIN, values as PostRequest).then(
+        (res: CommonResponse) => {
+          console.log(res.results! as Post)
+          // dispatch(
+          //   enqueueMessage({
+          //     message: {
+          //       code: 'S2000001',
+          //       message: 'Added Successfully',
+          //       detail: null,
+          //     },
+          //     status: 200,
+          //     type: 'success',
+          //   })
+          // )
+          nav(CONSTANT.ROUTE_URL.ADMIN + CONSTANT.ROUTE_URL.POST)
+        }
+      )
     }
   }
 
@@ -150,12 +159,16 @@ const CategoryEditPage = (): React.ReactNode => {
                           <div className="grid grid-cols-6 gap-3">
                             <FormLabel>{item.label as string}</FormLabel>
                             <FormControl className="col-span-3">
-                              <Input
-                                type={item.type as string}
-                                placeholder={item?.placeholder as string}
-                                {...field}
-                                value={field.value as string}
-                              />
+                              {item.type === 'textarea' ? (
+                                <Textarea {...field} value={field.value as string} />
+                              ) : (
+                                <Input
+                                  type={item.type as string}
+                                  placeholder={item?.placeholder as string}
+                                  {...field}
+                                  value={field.value as string}
+                                />
+                              )}
                             </FormControl>
                             <FormMessage />
                           </div>
@@ -183,4 +196,4 @@ const CategoryEditPage = (): React.ReactNode => {
     </Card>
   )
 }
-export default CategoryEditPage
+export default PostEditPage
