@@ -47,12 +47,27 @@ def list_api(
     )
 
 
+@public_router.get(
+    opa_cst.ROUTER_COMMON_WITH_ID,
+    name="OCA-PST-P-DTL",
+    summary=_("Get Public Post"),
+    response_model=ResponseSchema[PostPublicResponse],
+)
+def retrieve_api(
+    ps: Annotated[PostService, Depends()],
+    target_id: UUID = Path(description=_("The ID of the Post item to be retrieved")),
+) -> ResponseSchema[PostPublicResponse]:
+    return create_response_data(
+        PostPublicResponse, ps.get_one_by_id(target_id), detail=ps.detail
+    )
+
+
 # ----- Admin APIs ---------------------------------------------------------------------
 
 
 @admin_router.get(
     opa_cst.ROUTER_COMMON_ADMIN,
-    name="SYS-PST-A-LST",
+    name="OCA-PST-A-LST",
     summary=_("List Posts"),
     response_model=ResponseSchema[PostResponse],
 )
@@ -65,7 +80,7 @@ def list_admin_api(
 
 @admin_router.post(
     opa_cst.ROUTER_COMMON_ADMIN,
-    name="SYS-PST-A-ADD",
+    name="OCA-PST-A-ADD",
     summary=_("Create Post"),
     response_model=ResponseSchema[PostResponse],
 )
@@ -83,7 +98,7 @@ def create_admin_api(
 
 @admin_router.get(
     opa_cst.ROUTER_COMMON_ADMIN_WITH_ID,
-    name="SYS-PST-A-DTL",
+    name="OCA-PST-A-DTL",
     summary=_("Get Post"),
     response_model=ResponseSchema[PostResponse],
 )
@@ -98,7 +113,7 @@ def retrieve_admin_api(
 
 @admin_router.put(
     opa_cst.ROUTER_COMMON_ADMIN_WITH_ID,
-    name="SYS-COF-A-UPD",
+    name="OCA-PST-A-UPD",
     summary=_("Update Post"),
     response_model=ResponseSchema[PostResponse],
 )
@@ -119,7 +134,7 @@ def update_admin_api(
 
 @admin_router.delete(
     opa_cst.ROUTER_COMMON_ADMIN_WITH_ID,
-    name="SYS-COF-A-DEL",
+    name="OCA-PST-A-DEL",
     summary=_("Delete Post"),
     response_model=ResponseSchema[PostResponse],
 )

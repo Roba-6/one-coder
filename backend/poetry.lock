@@ -791,13 +791,14 @@ files = [
 
 [[package]]
 name = "one-public-api"
-version = "0.1.0a3"
+version = "0.1.0a4"
 description = "This package provides the API layer of the One Public Framework."
 optional = false
-python-versions = ">=3.11,<4.0"
+python-versions = "<4.0,>=3.11"
 groups = ["main"]
 files = [
-    {file = "one_public_api-0.1.0a3-py3-none-any.whl", hash = "sha256:8fbd0b94c606f4af99874c8ff756f6b7e2e0bd9fb6114dcd2648e56a6efcf3a1"},
+    {file = "one_public_api-0.1.0a4-py3-none-any.whl", hash = "sha256:9bba981512a75b19dfa2d020b551fb9cc7c3e4798b127e488deb48422c243e9b"},
+    {file = "one_public_api-0.1.0a4.tar.gz", hash = "sha256:e0f386fc886deb976c15f2ab213afb010958725f9a19121fd83489c2d22964cf"},
 ]
 
 [package.dependencies]
@@ -811,10 +812,6 @@ pyjwt = ">=2.10.1,<3.0.0"
 python-multipart = ">=0.0.20,<0.0.21"
 sqlmodel = ">=0.0.24,<0.0.25"
 uvicorn = {version = ">=0.34.3,<0.35.0", extras = ["standard"]}
-
-[package.source]
-type = "file"
-url = "../../one-public-framework/backend/dist/one_public_api-0.1.0a3-py3-none-any.whl"
 
 [[package]]
 name = "packaging"
@@ -1816,4 +1813,4 @@ files = [
 [metadata]
 lock-version = "2.1"
 python-versions = ">=3.11,<4.0"
-content-hash = "a7a02e322ed5e5fa83a4a1e52371687d4e0c89b2b84ee08bd5ce5e3d01c38046"
+content-hash = "1bbbc666c277b986f8c67df346d4ccd790168350c8c7ee9d20680eb32898c541"
