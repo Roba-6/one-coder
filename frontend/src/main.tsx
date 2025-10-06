@@ -7,12 +7,14 @@ import { createRoot } from 'react-dom/client'
 import { Provider } from 'react-redux'
 import { Route } from 'react-router'
 
-import CategoryEditPage from '@/features/categories/pages/edit-page.tsx'
-import CategoryListPage from '@/features/categories/pages/list-page.tsx'
-import PostEditPage from '@/features/posts/pages/edit-page.tsx'
-import PostListPage from '@/features/posts/pages/list-page.tsx'
+import CategoryEditPage from '@/features/admin/categories/pages/edit-page'
+import CategoryListPage from '@/features/admin/categories/pages/list-page'
+import PostEditPage from '@/features/admin/posts/pages/edit-page'
+import PostListPage from '@/features/admin/posts/pages/list-page'
+import HomePage from '@/features/home/pages/home-page'
+import PostPage from '@/features/home/pages/post-page'
 
-import Box from './box.tsx'
+import Box from './box'
 
 i18n.addResources('en', 'translation', {
   abc: 'A bc！',
@@ -29,6 +31,7 @@ createRoot(document.getElementById('root')!).render(
     <Provider store={store}>
       <App
         children={{
+          default: <HomePage />,
           adminRouter: (
             <>
               <Route path="categories/edit" element={<CategoryEditPage />} />
@@ -38,7 +41,12 @@ createRoot(document.getElementById('root')!).render(
               <Route path="ccb" element={<div>{import.meta.env.UI_NAME}</div>} />
             </>
           ),
-          publicRouter: <Route path="/aaa" element={<Box />} />,
+          publicRouter: (
+            <>
+              <Route path="posts/:id" element={<PostPage />} />
+              <Route path="/aaa" element={<Box />} />
+            </>
+          ),
         }}
       />
     </Provider>
