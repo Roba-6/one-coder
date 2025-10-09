@@ -1,14 +1,21 @@
 import { zodResolver } from '@hookform/resolvers/zod'
-import { CommonResponse, getApi, postApi, putApi } from 'one-public-ui'
-import { arrayToObject, getLocalMessage, setUrlParams } from 'one-public-ui/lib/utils'
-import i18n from 'one-public-ui/locales/configs'
+import {
+  arrayToObject,
+  CommonResponse,
+  getApi,
+  getLocalMessage,
+  i18n,
+  postApi,
+  putApi,
+  setUrlParams,
+} from 'one-public-ui'
 import React, { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 import { useLocation, useNavigate } from 'react-router'
 import { z } from 'zod'
 
-import { Button } from '@/common/components/ui/button.tsx'
-import { Card, CardContent } from '@/common/components/ui/card.tsx'
+import { Button } from '@/common/components/ui/button'
+import { Card, CardContent } from '@/common/components/ui/card'
 import {
   Form,
   FormControl,

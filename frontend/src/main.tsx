@@ -1,7 +1,6 @@
 import './index.css'
 
-import { App, store } from 'one-public-ui'
-import i18n from 'one-public-ui/locales/configs'
+import { App, i18n, store } from 'one-public-ui'
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import { Provider } from 'react-redux'

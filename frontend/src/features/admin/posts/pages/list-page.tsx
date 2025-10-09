@@ -17,8 +17,9 @@ import {
   DataPagination,
   deleteApi,
   getApi,
+  getLocalMessage,
+  setUrlParams,
 } from 'one-public-ui'
-import { getLocalMessage, setUrlParams } from 'one-public-ui/lib/utils'
 import React, { useEffect } from 'react'
 import { useNavigate } from 'react-router'
 

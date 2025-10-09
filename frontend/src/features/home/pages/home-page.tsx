@@ -1,11 +1,14 @@
-import { CommonResponse, getApi } from 'one-public-ui'
-import { loadComplete } from 'one-public-ui/common/app-slice'
-import { useAppDispatch } from 'one-public-ui/common/hooks/use-store'
-import { setUrlParams } from 'one-public-ui/lib/utils'
+import {
+  CommonResponse,
+  getApi,
+  loadComplete,
+  setUrlParams,
+  useAppDispatch,
+} from 'one-public-ui'
 import React, { useEffect } from 'react'
 import { NavLink } from 'react-router'
 
-import { CONSTANT } from '@/common/constants.ts'
+import { CONSTANT } from '@/common/constants'
 import type { Post } from '@/features/admin/posts/types/post'
 
 const HomePage = () => {

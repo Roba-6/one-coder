@@ -17,12 +17,13 @@ import {
   DataPagination,
   deleteApi,
   getApi,
+  getLocalMessage,
+  setUrlParams,
 } from 'one-public-ui'
-import { getLocalMessage, setUrlParams } from 'one-public-ui/lib/utils'
 import React, { useEffect } from 'react'
 import { useNavigate } from 'react-router'
 
-import { Button } from '@/common/components/ui/button.tsx'
+import { Button } from '@/common/components/ui/button'
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -30,8 +31,8 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from '@/common/components/ui/dropdown-menu.tsx'
-import { CONSTANT } from '@/common/constants.ts'
+} from '@/common/components/ui/dropdown-menu'
+import { CONSTANT } from '@/common/constants'
 import type { Category } from '@/features/admin/categories/types/category'
 
 const CategoryListPage = (): React.ReactNode => {

@@ -1,7 +1,12 @@
-import { CommonResponse, getApi } from 'one-public-ui'
-import { loadComplete } from 'one-public-ui/common/app-slice'
-import { useAppDispatch } from 'one-public-ui/common/hooks/use-store'
-import { setUrlParams } from 'one-public-ui/lib/utils'
+import '../styles/post-page.css'
+
+import {
+  CommonResponse,
+  getApi,
+  loadComplete,
+  setUrlParams,
+  useAppDispatch,
+} from 'one-public-ui'
 import React, { useEffect } from 'react'
 import Markdown from 'react-markdown'
 import { useParams } from 'react-router'
@@ -36,7 +41,7 @@ const PostPage = () => {
   return (
     <div className="single-page">
       <div className="container mx-auto min-h-[100vh]">
-        <h1>{postData?.title}</h1>
+        <h1 className="p-12 text-2xl text-center font-bold">{postData?.title}</h1>
         <p>{postData?.overview}</p>
         <div className="post-content">
           <Markdown
