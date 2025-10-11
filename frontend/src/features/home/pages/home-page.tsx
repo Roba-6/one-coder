@@ -1,3 +1,4 @@
+import { CircleChevronRight } from 'lucide-react'
 import {
   CommonResponse,
   getApi,
@@ -29,10 +30,11 @@ const HomePage = () => {
   return (
     <div className="single-page">
       <div className="container mx-auto min-h-[100vh]">
-        <ul>
-          {postData.map((post) => (
+        <ul className="py-32 px-12">
+          {postData.map((post: Post) => (
             <li key={post.id}>
               <NavLink to={setUrlParams(CONSTANT.ROUTE_URL.POST_ID, post.id)}>
+                <CircleChevronRight size={14} className="me-1 inline" />
                 {post.title}
               </NavLink>
             </li>

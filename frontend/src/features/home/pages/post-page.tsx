@@ -41,8 +41,8 @@ const PostPage = () => {
   return (
     <div className="single-page">
       <div className="container mx-auto min-h-[100vh]">
-        <h1 className="p-12 text-2xl text-center font-bold">{postData?.title}</h1>
-        <p>{postData?.overview}</p>
+        <h1 className="post-title">{postData?.title}</h1>
+        <p className="post-overview">{postData?.overview}</p>
         <div className="post-content">
           <Markdown
             rehypePlugins={[rehypeRaw, remarkGfm]}

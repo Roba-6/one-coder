@@ -1,7 +1,15 @@
-@import "tailwindcss";
+@import "@/index.css";
+
+.post-title {
+  @apply p-12 text-neutral-900 dark:text-neutral-100 text-2xl text-center font-bold;
+}
+
+.post-overview {
+  @apply mb-6 text-neutral-500;
+}
 
 .post-content {
-  @apply text-gray-400
+  @apply pb-6 text-neutral-900 dark:text-neutral-300;
 }
 
 .post-content > table,
@@ -19,15 +27,15 @@
   @apply transition-all;
 }
 .post-content > table tr:not(:has(th)):hover {
-  @apply bg-neutral-500 transition-all;
+  @apply bg-neutral-300 dark:bg-neutral-900 transition-all;
 }
 .post-content > table th {
-  @apply p-2 /*bg-neutral-900 text-white*/　border-b-2 border-b-neutral-500
+  @apply p-2 /*bg-neutral-900 text-white*/　border-b-1 border-b-neutral-400 dark:border-b-neutral-500
     [&:first-child]:rounded-tl-md
     [&:last-child]:rounded-tr-md;
 }
 .post-content > table td {
-  @apply p-2 border-b border-neutral-600 box-content transition-all;
+  @apply px-2 py-5 border-b border-neutral-300 dark:border-neutral-700 box-content transition-all;
 }
 .post-content pre {
   @apply mb-10 rounded-md overflow-hidden;
@@ -46,7 +54,7 @@
     md:mt-24 md:text-4xl;
 }
 .post-content > h2 {
-  @apply mt-12 pb-2 font-bold text-2xl border-b border-b-neutral-700
+  @apply mt-12 pb-2 font-bold text-2xl border-b border-b-neutral-700 dark:border-b-neutral-500
     md:text-3xl;
 }
 .post-content > h3 {
@@ -64,7 +72,7 @@
 }
 .post-content > p code,
 .post-content li > p code {
-  @apply px-1.5 py-0.5 border border-dashed border-neutral-900 rounded
+  @apply px-1.5 py-0.5 border border-dashed border-neutral-900 dark:border-neutral-400 rounded
     text-sm leading-8 align-bottom;
 }
 .post-content > ul,
@@ -73,14 +81,14 @@
 }
 .post-content > ul > li:not(:has(> input)) {
   @apply pl-6
-    bg-[url('/icon-arrow-right-circle-outline.svg')]
+    bg-[url('/images/icons/icon-arrow-right-circle-outline.svg')]
     bg-[length:1em_1em] bg-no-repeat bg-[left_0.5em];
 }
 .post-content > ol {
   @apply ml-10 list-[decimal-leading-zero];
 }
 .post-content input[type='checkbox'] {
-  @apply w-4 h-4 bg-[url('/icon-check-circle-outline.svg')]
+  @apply w-4 h-4 bg-[url('/images/icons/icon-check-circle-outline.svg')]
     align-text-bottom
     appearance-none opacity-30 transition-all;
 }
@@ -88,16 +96,16 @@
   @apply opacity-100 transition-all;
 }
 .post-content kbd {
-  @apply px-1.5 py-0.5 border border-b-2 border-neutral-300 rounded
-    bg-neutral-100 shadow-white shadow-inner
-    text-sm leading-8 align-bottom;
+  @apply px-1.5 py-0.25 border border-b-3 border-neutral-300 dark:border-neutral-400 rounded
+    bg-neutral-100 shadow-white shadow-inner transition-all
+    text-sm dark:text-neutral-500 leading-8 align-bottom;
 }
 .post-content del {
   @apply opacity-60;
 }
 .post-content a {
-  @apply pl-5 py-0.5 border-b border-dashed border-neutral-900
-    bg-[url('/icon-link-outline.svg')]
+  @apply pl-5 py-0.5 border-b border-dashed border-neutral-900 dark:border-neutral-400
+    bg-[url('/images/icons/icon-link-outline.svg')]
     bg-[length:1em_1em] bg-no-repeat bg-left
     align-bottom opacity-60 transition-all;
 }
