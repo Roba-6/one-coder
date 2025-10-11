@@ -1,6 +1,4 @@
-import { loadComplete } from 'one-public-ui/common/app-slice'
-import { useAppDispatch } from 'one-public-ui/common/hooks/use-store'
-import { getLocalMessage } from 'one-public-ui/lib/utils'
+import { getLocalMessage, loadComplete, useAppDispatch } from 'one-public-ui'
 import * as React from 'react'
 import { useEffect } from 'react'
 

@@ -19,7 +19,7 @@ include = ["src/one_coder_api/locales/**/*.mo"]
 
 [tool.poetry.dependencies]
 python = ">=3.11,<4.0"
-one-public-api = {path = "../../one-public-framework/backend/dist/one_public_api-0.1.0a0-py3-none-any.whl"}
+one-public-api = "^0.1.0a5"
 
 [tool.poetry.group.dev.dependencies]
 alembic = "^1.16.1"
@@ -41,10 +41,6 @@ mypy_path = "src"
 python_version = "3.11"
 strict = true
 exclude = [".venv", "migrations/versions", "tests"]
-
-[tool.black]
-line-length = 88
-target-version = ["py311"]
 
 [tool.ruff]
 line-length = 88

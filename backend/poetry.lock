@@ -262,14 +262,14 @@ files = [
 
 [[package]]
 name = "click"
-version = "8.2.1"
+version = "8.3.0"
 description = "Composable command line interface toolkit"
 optional = false
 python-versions = ">=3.10"
 groups = ["main"]
 files = [
-    {file = "click-8.2.1-py3-none-any.whl", hash = "sha256:61a3265b914e850b85317d0b3109c7f8cd35a670f963866005d6ef1d5175a12b"},
-    {file = "click-8.2.1.tar.gz", hash = "sha256:27c491cc05d968d271d5a1db13e3b5a184636d9d930f148c50b038f0d0646202"},
+    {file = "click-8.3.0-py3-none-any.whl", hash = "sha256:9b9f285302c6e3064f4330c05f05b81945b2a39544279343e6e7c5f27a9baddc"},
+    {file = "click-8.3.0.tar.gz", hash = "sha256:e7b8232224eba16f4ebe410c25ced9f7875cb5f3263ffc93cc3e8da705e229c4"},
 ]
 
 [package.dependencies]
@@ -302,24 +302,24 @@ files = [
 
 [[package]]
 name = "dnspython"
-version = "2.7.0"
+version = "2.8.0"
 description = "DNS toolkit"
 optional = false
-python-versions = ">=3.9"
+python-versions = ">=3.10"
 groups = ["main"]
 files = [
-    {file = "dnspython-2.7.0-py3-none-any.whl", hash = "sha256:b4c34b7d10b51bcc3a5071e7b8dee77939f1e878477eeecc965e9835f63c6c86"},
-    {file = "dnspython-2.7.0.tar.gz", hash = "sha256:ce9c432eda0dc91cf618a5cedf1a4e142651196bbcd2c80e89ed5a907e5cfaf1"},
+    {file = "dnspython-2.8.0-py3-none-any.whl", hash = "sha256:01d9bbc4a2d76bf0db7c1f729812ded6d912bd318d3b1cf81d30c0f845dbf3af"},
+    {file = "dnspython-2.8.0.tar.gz", hash = "sha256:181d3c6996452cb1189c4046c61599b84a5a86e099562ffde77d26984ff26d0f"},
 ]
 
 [package.extras]
-dev = ["black (>=23.1.0)", "coverage (>=7.0)", "flake8 (>=7)", "hypercorn (>=0.16.0)", "mypy (>=1.8)", "pylint (>=3)", "pytest (>=7.4)", "pytest-cov (>=4.1.0)", "quart-trio (>=0.11.0)", "sphinx (>=7.2.0)", "sphinx-rtd-theme (>=2.0.0)", "twine (>=4.0.0)", "wheel (>=0.42.0)"]
-dnssec = ["cryptography (>=43)"]
-doh = ["h2 (>=4.1.0)", "httpcore (>=1.0.0)", "httpx (>=0.26.0)"]
-doq = ["aioquic (>=1.0.0)"]
-idna = ["idna (>=3.7)"]
-trio = ["trio (>=0.23)"]
-wmi = ["wmi (>=1.5.1)"]
+dev = ["black (>=25.1.0)", "coverage (>=7.0)", "flake8 (>=7)", "hypercorn (>=0.17.0)", "mypy (>=1.17)", "pylint (>=3)", "pytest (>=8.4)", "pytest-cov (>=6.2.0)", "quart-trio (>=0.12.0)", "sphinx (>=8.2.0)", "sphinx-rtd-theme (>=3.0.0)", "twine (>=6.1.0)", "wheel (>=0.45.0)"]
+dnssec = ["cryptography (>=45)"]
+doh = ["h2 (>=4.2.0)", "httpcore (>=1.0.0)", "httpx (>=0.28.0)"]
+doq = ["aioquic (>=1.2.0)"]
+idna = ["idna (>=3.10)"]
+trio = ["trio (>=0.30)"]
+wmi = ["wmi (>=1.5.1) ; platform_system == \"Windows\""]
 
 [[package]]
 name = "docformatter"
@@ -342,14 +342,14 @@ tomli = ["tomli (>=2.0.0,<3.0.0) ; python_version < \"3.11\""]
 
 [[package]]
 name = "email-validator"
-version = "2.2.0"
+version = "2.3.0"
 description = "A robust email address syntax and deliverability validation library."
 optional = false
 python-versions = ">=3.8"
 groups = ["main"]
 files = [
-    {file = "email_validator-2.2.0-py3-none-any.whl", hash = "sha256:561977c2d73ce3611850a06fa56b414621e0c8faa9d66f2611407d87465da631"},
-    {file = "email_validator-2.2.0.tar.gz", hash = "sha256:cb690f344c617a714f22e66ae771445a1ceb46821152df8e165c5f9a364582b7"},
+    {file = "email_validator-2.3.0-py3-none-any.whl", hash = "sha256:80f13f623413e6b197ae73bb10bf4eb0908faf509ad8362c5edeb0be7fd450b4"},
+    {file = "email_validator-2.3.0.tar.gz", hash = "sha256:9fc05c37f2f6cf439ff414f8fc46d917929974a82244c20eb10231ba60c54426"},
 ]
 
 [package.dependencies]
@@ -791,17 +791,18 @@ files = [
 
 [[package]]
 name = "one-public-api"
-version = "0.1.0a0"
+version = "0.1.0a5"
 description = "This package provides the API layer of the One Public Framework."
 optional = false
-python-versions = ">=3.11,<4.0"
+python-versions = "<4.0,>=3.11"
 groups = ["main"]
 files = [
-    {file = "one_public_api-0.1.0a0-py3-none-any.whl", hash = "sha256:8a202ebdbc5dba10dff6fda135d22e5fe54368005714dc5b3ce4c989023fc15a"},
+    {file = "one_public_api-0.1.0a5-py3-none-any.whl", hash = "sha256:25d642bb582f4964afcbc14ed3a36306276417c03c82e4a57b78581233a17e08"},
+    {file = "one_public_api-0.1.0a5.tar.gz", hash = "sha256:c42e3dcddbc124c7c4c8ac144b56071ff9df2ac49049f065c3e0c537da5aa2f1"},
 ]
 
 [package.dependencies]
-bcrypt = ">=4.3.0,<5.0.0"
+bcrypt = ">=4.0.1,<5.0.0"
 fastapi = ">=0.115.12,<0.116.0"
 passlib = {version = ">=1.7.4,<2.0.0", extras = ["bcrypt"]}
 psycopg2-binary = ">=2.9.10,<3.0.0"
@@ -811,10 +812,6 @@ pyjwt = ">=2.10.1,<3.0.0"
 python-multipart = ">=0.0.20,<0.0.21"
 sqlmodel = ">=0.0.24,<0.0.25"
 uvicorn = {version = ">=0.34.3,<0.35.0", extras = ["standard"]}
-
-[package.source]
-type = "file"
-url = "../../one-public-framework/backend/dist/one_public_api-0.1.0a0-py3-none-any.whl"
 
 [[package]]
 name = "packaging"
@@ -993,14 +990,14 @@ files = [
 
 [[package]]
 name = "pydantic"
-version = "2.11.7"
+version = "2.11.10"
 description = "Data validation using Python type hints"
 optional = false
 python-versions = ">=3.9"
 groups = ["main"]
 files = [
-    {file = "pydantic-2.11.7-py3-none-any.whl", hash = "sha256:dde5df002701f6de26248661f6835bbe296a47bf73990135c7d07ce741b9623b"},
-    {file = "pydantic-2.11.7.tar.gz", hash = "sha256:d989c3c6cb79469287b1569f7447a17848c998458d49ebe294e975b9baf0f0db"},
+    {file = "pydantic-2.11.10-py3-none-any.whl", hash = "sha256:802a655709d49bd004c31e865ef37da30b540786a46bfce02333e0e24b5fe29a"},
+    {file = "pydantic-2.11.10.tar.gz", hash = "sha256:dc280f0982fbda6c38fada4e476dc0a4f3aeaf9c6ad4c28df68a666ec3c61423"},
 ]
 
 [package.dependencies]
@@ -1128,14 +1125,14 @@ typing-extensions = ">=4.6.0,<4.7.0 || >4.7.0"
 
 [[package]]
 name = "pydantic-settings"
-version = "2.10.1"
+version = "2.11.0"
 description = "Settings management using Pydantic"
 optional = false
 python-versions = ">=3.9"
 groups = ["main"]
 files = [
-    {file = "pydantic_settings-2.10.1-py3-none-any.whl", hash = "sha256:a60952460b99cf661dc25c29c0ef171721f98bfcb52ef8d9ea4c943d7c8cc796"},
-    {file = "pydantic_settings-2.10.1.tar.gz", hash = "sha256:06f0062169818d0f5524420a360d632d5857b83cffd4d42fe29597807a1614ee"},
+    {file = "pydantic_settings-2.11.0-py3-none-any.whl", hash = "sha256:fe2cea3413b9530d10f3a5875adffb17ada5c1e1bab0b2885546d7310415207c"},
+    {file = "pydantic_settings-2.11.0.tar.gz", hash = "sha256:d0e87a1c7d33593beb7194adb8470fc426e95ba02af83a0f23474a04c9a08180"},
 ]
 
 [package.dependencies]
@@ -1491,14 +1488,14 @@ files = [
 
 [[package]]
 name = "typing-inspection"
-version = "0.4.1"
+version = "0.4.2"
 description = "Runtime typing introspection tools"
 optional = false
 python-versions = ">=3.9"
 groups = ["main"]
 files = [
-    {file = "typing_inspection-0.4.1-py3-none-any.whl", hash = "sha256:389055682238f53b04f7badcb49b989835495a96700ced5dab2d8feae4b26f51"},
-    {file = "typing_inspection-0.4.1.tar.gz", hash = "sha256:6ae134cc0203c33377d43188d4064e9b357dba58cff3185f22924610e70a9d28"},
+    {file = "typing_inspection-0.4.2-py3-none-any.whl", hash = "sha256:4ed1cacbdc298c220f1bd249ed5287caa16f34d44ef4e9c3d0cbad5b521545e7"},
+    {file = "typing_inspection-0.4.2.tar.gz", hash = "sha256:ba561c48a67c5958007083d386c3295464928b01faa735ab8547c5692e87f464"},
 ]
 
 [package.dependencies]
@@ -1816,4 +1813,4 @@ files = [
 [metadata]
 lock-version = "2.1"
 python-versions = ">=3.11,<4.0"
-content-hash = "030f869b908f77369fcbefece88af9792a20e4cd849fe2c1b6c1983e2f920ee7"
+content-hash = "4065f3bd31d7d1d959b81aa74683a3ec95b3ce830df0a1a33481d27b36431edb"
