@@ -1,8 +1,8 @@
 services:
-  db:
+  oc-db:
     image: postgres:16
-    container_name: one-coder-db
-    hostname: one-coder-db
+    container_name: oc-db
+    hostname: oc-db
     restart: always
     shm_size: 128mb
     environment:
@@ -16,11 +16,11 @@ services:
     ports:
       - '5432:5432'
     networks:
-      - one-coder-net
+      - oc-net
 
 volumes:
   db_data:
 
 networks:
-  opf-net:
+  oc-net:
     external: false
