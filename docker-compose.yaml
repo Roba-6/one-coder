@@ -11,10 +11,47 @@ services:
       POSTGRES_USER: ${API_DB_USER}
       POSTGRES_PASSWORD: ${API_DB_PASS}
       POSTGRES_INITDB_ARGS: '--auth=md5'
+    healthcheck:
+      test: pg_isready -U "${API_DB_USER:-postgres}" || exit 1
+      interval: 10s
+      timeout: 5s
+      retries: 3
     volumes:
       - db_data:/var/lib/postgres/data
     ports:
       - '5432:5432'
+    networks:
+      - oc-net
+
+  oc-api:
+    container_name: oc-api
+    hostname: oc-api
+    build:
+      context: .
+      dockerfile: backend/Dockerfile
+    environment:
+      TZ: ${API_TIME_ZONE}
+    restart: always
+    #    volumes:
+    #      - .:/code
+    logging:
+      driver: json-file
+      options:
+        max-size: '512m'
+        max-file: '30'
+    #    tty: true
+    #    stdin_open: true
+    #    command: [ "bash", "-l" ]
+    command: >
+      bash -lc "cd /code;
+                . backend/.venv/bin/activate;
+                bash manage.sh init --prod --back;
+                exec bash manage.sh start --prod --back"
+    depends_on:
+      oc-db:
+        condition: service_healthy
+    ports:
+      - '8000:8000'
     networks:
       - oc-net
 
