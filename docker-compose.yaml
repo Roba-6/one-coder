@@ -55,6 +55,30 @@ services:
     networks:
       - oc-net
 
+  oc-server:
+    container_name: oc-server
+    hostname: oc-server
+    build:
+      context: .
+      dockerfile: frontend/Dockerfile
+    volumes:
+      - ./resources/config/default.conf:/etc/nginx/conf.d/default.conf
+#      - ./resource/ssl.conf:/etc/nginx/conf.d/ssl.conf
+#      - ./resource/ssl_crt:/ssl_crt
+    logging:
+      driver: json-file
+      options:
+        max-size: '512m'
+        max-file: '30'
+    ports:
+      - '80:80'
+      - '443:443'
+    depends_on:
+      - oc-api
+    restart: always
+    networks:
+      - oc-net
+
 volumes:
   db_data:
 
