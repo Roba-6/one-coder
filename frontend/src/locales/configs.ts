@@ -1,4 +1,4 @@
-import i18n from 'one-public-ui/locales/configs'
+import { i18n } from 'one-public-ui'
 
 import { CONSTANT } from '@/common/constants'
 
