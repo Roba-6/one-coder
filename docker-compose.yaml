@@ -75,6 +75,8 @@ services:
       - '443:443'
     depends_on:
       - oc-api
+#    command: tail -f /dev/null
+#    tty: true
     restart: always
     networks:
       - oc-net
