@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: One Public API 0.1.0-alpha\n"
 "Report-Msgid-Bugs-To: roba@one-coder.com\n"
-"POT-Creation-Date: 2025-10-05 11:26+0900\n"
+"POT-Creation-Date: 2025-10-13 00:29+0900\n"
 "PO-Revision-Date: 2025-05-25 16:37+0900\n"
 "Last-Translator: Roba <roba@one-coder.com>\n"
 "Language: ja\n"
@@ -24,13 +24,12 @@ msgstr ""
 #: src/one_coder_api/schemas/category_schema.py:52
 #: src/one_coder_api/schemas/post_schema.py:44
 msgid "The name of the category."
-msgstr "カテゴリ名"
+msgstr "カテゴリー名"
 
 #: src/one_coder_api/models/category_model.py:30
 #: src/one_coder_api/models/category_model.py:74
-#, fuzzy
 msgid "The type of the category."
-msgstr "カテゴリ名"
+msgstr "カテゴリータイプ"
 
 #: src/one_coder_api/models/category_model.py:37
 msgid "The alias of the category."
@@ -53,19 +52,16 @@ msgstr ""
 
 #: src/one_coder_api/models/post_model.py:20
 #: src/one_coder_api/models/post_model.py:47
-#, fuzzy
 msgid "The title of the post."
-msgstr "カテゴリ名"
+msgstr "タイトル"
 
 #: src/one_coder_api/models/post_model.py:25
-#, fuzzy
 msgid "The overview of the post."
-msgstr "カテゴリ名"
+msgstr "概要"
 
 #: src/one_coder_api/models/post_model.py:30
-#, fuzzy
 msgid "The content of the post."
-msgstr "カテゴリ名"
+msgstr "本文"
 
 #: src/one_coder_api/models/post_model.py:37
 msgid "Assigned Category ID."
@@ -80,88 +76,81 @@ msgid "List Public Categories"
 msgstr "公開カテゴリー一覧"
 
 #: src/one_coder_api/routers/category_router.py:56
-#, fuzzy
 msgid "List Categories"
-msgstr "公開カテゴリー一覧"
+msgstr "カテゴリー一覧"
 
 #: src/one_coder_api/routers/category_router.py:71
 msgid "Create Category"
 msgstr ""
 
 #: src/one_coder_api/routers/category_router.py:89
-#, fuzzy
 msgid "Get Category"
-msgstr "カテゴリー"
+msgstr "カテゴリー取得"
 
 #: src/one_coder_api/routers/category_router.py:95
-#, fuzzy
 msgid "The ID of the Category item to be retrieved"
-msgstr "カテゴリー名の別名（URL に表示される）。"
+msgstr "取得したいカテゴリーの ID"
 
 #: src/one_coder_api/routers/category_router.py:106
-#, fuzzy
 msgid "Update Category"
-msgstr "カテゴリー"
+msgstr "カテゴリー更新"
 
 #: src/one_coder_api/routers/category_router.py:113
-#, fuzzy
 msgid "The ID of the category item to be updated"
-msgstr "カテゴリー名の別名（URL に表示される）。"
+msgstr "更新したいカテゴリーの ID"
 
 #: src/one_coder_api/routers/category_router.py:127
-#, fuzzy
 msgid "Delete Category"
-msgstr "カテゴリー"
+msgstr "カテゴリー削除"
 
 #: src/one_coder_api/routers/category_router.py:132
-#, fuzzy
 msgid "The ID of the category item to be deleted"
-msgstr "カテゴリー名の別名（URL に表示される）。"
+msgstr "削除したいカテゴリーの ID"
 
 #: src/one_coder_api/routers/post_router.py:30
 msgid "Posts"
 msgstr ""
 
 #: src/one_coder_api/routers/post_router.py:38
-#, fuzzy
 msgid "List Public Posts"
-msgstr "公開カテゴリー一覧"
+msgstr "公開投稿一覧"
 
-#: src/one_coder_api/routers/post_router.py:56
-msgid "List Posts"
-msgstr ""
+#: src/one_coder_api/routers/post_router.py:53
+msgid "Get Public Post"
+msgstr "公開投稿取得"
 
-#: src/one_coder_api/routers/post_router.py:69
-msgid "Create Post"
-msgstr ""
-
-#: src/one_coder_api/routers/post_router.py:87
-msgid "Get Post"
-msgstr ""
-
-#: src/one_coder_api/routers/post_router.py:92
-#, fuzzy
+#: src/one_coder_api/routers/post_router.py:58
+#: src/one_coder_api/routers/post_router.py:107
 msgid "The ID of the Post item to be retrieved"
-msgstr "カテゴリー名の別名（URL に表示される）。"
+msgstr "取得したい投稿の ID"
+
+#: src/one_coder_api/routers/post_router.py:71
+msgid "List Posts"
+msgstr "投稿一覧"
+
+#: src/one_coder_api/routers/post_router.py:84
+msgid "Create Post"
+msgstr "投稿作成"
 
 #: src/one_coder_api/routers/post_router.py:102
+msgid "Get Post"
+msgstr "投稿取得"
+
+#: src/one_coder_api/routers/post_router.py:117
 msgid "Update Post"
-msgstr ""
+msgstr "投稿更新"
 
-#: src/one_coder_api/routers/post_router.py:109
-#, fuzzy
+#: src/one_coder_api/routers/post_router.py:124
 msgid "The ID of the post item to be updated"
-msgstr "カテゴリー名の別名（URL に表示される）。"
+msgstr "更新したい投稿の ID"
 
-#: src/one_coder_api/routers/post_router.py:123
-#, fuzzy
+#: src/one_coder_api/routers/post_router.py:138
 msgid "Delete Post"
-msgstr "カテゴリ名"
+msgstr "投稿削除"
 
-#: src/one_coder_api/routers/post_router.py:128
-#, fuzzy
+#: src/one_coder_api/routers/post_router.py:143
 msgid "The ID of the post item to be deleted"
-msgstr "カテゴリー名の別名（URL に表示される）。"
+msgstr "削除したい投稿の ID"
 
 #: src/one_coder_api/schemas/category_schema.py:77
 #: src/one_coder_api/schemas/post_schema.py:65
@@ -174,16 +163,9 @@ msgid "Updater"
 msgstr ""
 
 #: src/one_coder_api/schemas/post_schema.py:27
-#, fuzzy
 msgid "Category"
 msgstr "カテゴリー"
 
 #: src/one_coder_api/services/category_service.py:42
 msgid "This record might be referenced by other data."
 msgstr ""
-
-#~ msgid "Update Configuration"
-#~ msgstr ""
-
-#~ msgid "Delete Configuration"
-#~ msgstr ""

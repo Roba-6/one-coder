@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: One Public API 0.1.0-alpha\n"
 "Report-Msgid-Bugs-To: roba@one-coder.com\n"
-"POT-Creation-Date: 2025-10-05 11:26+0900\n"
+"POT-Creation-Date: 2025-10-13 00:29+0900\n"
 "PO-Revision-Date: 2025-05-25 16:37+0900\n"
 "Last-Translator: Roba <roba@one-coder.com>\n"
 "Language: en\n"
@@ -115,35 +115,40 @@ msgstr ""
 msgid "List Public Posts"
 msgstr ""
 
-#: src/one_coder_api/routers/post_router.py:56
-msgid "List Posts"
+#: src/one_coder_api/routers/post_router.py:53
+msgid "Get Public Post"
 msgstr ""
 
-#: src/one_coder_api/routers/post_router.py:69
-msgid "Create Post"
-msgstr ""
-
-#: src/one_coder_api/routers/post_router.py:87
-msgid "Get Post"
-msgstr ""
-
-#: src/one_coder_api/routers/post_router.py:92
+#: src/one_coder_api/routers/post_router.py:58
+#: src/one_coder_api/routers/post_router.py:107
 msgid "The ID of the Post item to be retrieved"
 msgstr ""
 
+#: src/one_coder_api/routers/post_router.py:71
+msgid "List Posts"
+msgstr ""
+
+#: src/one_coder_api/routers/post_router.py:84
+msgid "Create Post"
+msgstr ""
+
 #: src/one_coder_api/routers/post_router.py:102
+msgid "Get Post"
+msgstr ""
+
+#: src/one_coder_api/routers/post_router.py:117
 msgid "Update Post"
 msgstr ""
 
-#: src/one_coder_api/routers/post_router.py:109
+#: src/one_coder_api/routers/post_router.py:124
 msgid "The ID of the post item to be updated"
 msgstr ""
 
-#: src/one_coder_api/routers/post_router.py:123
+#: src/one_coder_api/routers/post_router.py:138
 msgid "Delete Post"
 msgstr ""
 
-#: src/one_coder_api/routers/post_router.py:128
+#: src/one_coder_api/routers/post_router.py:143
 msgid "The ID of the post item to be deleted"
 msgstr ""
 
@@ -164,9 +169,3 @@ msgstr ""
 #: src/one_coder_api/services/category_service.py:42
 msgid "This record might be referenced by other data."
 msgstr ""
-
-#~ msgid "Update Configuration"
-#~ msgstr ""
-
-#~ msgid "Delete Configuration"
-#~ msgstr ""
