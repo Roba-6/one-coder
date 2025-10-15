@@ -1,0 +1,98 @@
+services:
+  oc-db:
+    image: postgres:16
+    container_name: oc-db
+    hostname: oc-db
+    restart: always
+    shm_size: 128mb
+    environment:
+      TZ: ${API_TIME_ZONE}
+      POSTGRES_DB: ${API_DB_NAME}
+      POSTGRES_USER: ${API_DB_USER}
+      POSTGRES_PASSWORD: ${API_DB_PASS}
+      POSTGRES_INITDB_ARGS: '--auth=md5'
+    healthcheck:
+      test: pg_isready -U "${API_DB_USER:-postgres}" || exit 1
+      interval: 10s
+      timeout: 5s
+      retries: 3
+    volumes:
+      - db_data:/var/lib/postgres/data
+    ports:
+      - '5432:5432'
+    networks:
+      - oc-net
+
+  oc-api:
+    container_name: oc-api
+    hostname: oc-api
+    build:
+      context: .
+      dockerfile: backend/Dockerfile
+    environment:
+      TZ: ${API_TIME_ZONE}
+    restart: always
+    #    volumes:
+    #      - .:/code
+    logging:
+      driver: json-file
+      options:
+        max-size: '512m'
+        max-file: '30'
+    #    tty: true
+    #    stdin_open: true
+    #    command: [ "bash", "-l" ]
+    command: >
+      bash -lc "cd /code;
+                . backend/.venv/bin/activate;
+                bash manage.sh init --prod --back;
+                exec bash manage.sh start --prod --back"
+    depends_on:
+      oc-db:
+        condition: service_healthy
+    ports:
+      - '8000:8000'
+    networks:
+      - oc-net
+
+  oc-server:
+    container_name: oc-server
+    hostname: oc-server
+    build:
+      context: .
+      dockerfile: frontend/Dockerfile
+    volumes:
+      - ./resources/config/default.conf:/etc/nginx/conf.d/default.conf
+      - ./resources/config/ssl.conf:/etc/nginx/conf.d/ssl.conf
+      - ./resources/ssl-crt:/ssl-crt
+    logging:
+      driver: json-file
+      options:
+        max-size: '512m'
+        max-file: '30'
+    ports:
+      - '80:80'
+      - '443:443'
+    depends_on:
+      - oc-api
+    restart: always
+    networks:
+      - oc-net
+
+#  certbot:
+#    image: certbot/certbot
+#    user: "${UID}:${GID}"
+#    environment:
+#      - UID=${UID}
+#      - GID=${GID}
+#    volumes:
+#      - ./resources/ssl-crt:/etc/letsencrypt
+#      - ./resources/www:/var/www/certbot
+#      - ./resources/logs:/var/log/letsencrypt
+
+volumes:
+  db_data:
+
+networks:
+  oc-net:
+    external: false
