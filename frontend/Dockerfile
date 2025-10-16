@@ -18,4 +18,4 @@ EXPOSE 80
 
 COPY --from=build /code/frontend/dist /usr/share/nginx/html
 
-CMD ["nginx", "-g", "daemon off"]
+CMD ["nginx", "-g", "daemon off;"]
