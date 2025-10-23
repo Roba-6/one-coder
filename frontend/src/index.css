@@ -124,7 +124,15 @@
 }
 
 html body {
-  @apply bg-neutral-200 dark:bg-neutral-800;
+  @apply bg-neutral-200
+    bg-[radial-gradient(rgba(255,255,255,0.4)_20%,transparent_20%)]
+  dark:bg-neutral-800
+    dark:bg-[radial-gradient(rgba(255,255,255,0.02)_20%,transparent_20%)]
+    bg-[length:8px_8px];
 }
 
 a { @apply text-neutral-500; }
+
+.single-page {
+  @apply px-4 md:px-10;
+}
