@@ -1,0 +1,23 @@
+@import "@/index.css";
+
+.post-card-list {
+  @apply py-24;
+}
+
+.post-card-list ul {
+  @apply grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-4;
+
+  li {
+    @apply p-4 border-[1px] border-solid rounded-md
+      border-neutral-400 bg-neutral-100
+      dark:border-neutral-700 dark:bg-neutral-900
+      cursor-pointer transition-all;
+  }
+  li:hover {
+    @apply border-neutral-700 dark:border-neutral-300 shadow;
+
+    p {
+      @apply text-neutral-600 dark:text-neutral-400;
+    }
+  }
+}

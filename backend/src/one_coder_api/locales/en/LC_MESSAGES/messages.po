@@ -1,14 +1,14 @@
-# English translations for One Public API.
+# English translations for One Coder API.
 # Copyright (C) 2025 Roba
-# This file is distributed under the same license as the One Public API
+# This file is distributed under the same license as the One Coder API
 # project.
 # Roba <roba@one-coder.com>, 2025.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: One Public API 0.1.0-alpha\n"
+"Project-Id-Version: One Coder API 0.1.0-alpha.1\n"
 "Report-Msgid-Bugs-To: roba@one-coder.com\n"
-"POT-Creation-Date: 2025-10-13 00:29+0900\n"
+"POT-Creation-Date: 2025-10-18 15:15+0900\n"
 "PO-Revision-Date: 2025-05-25 16:37+0900\n"
 "Last-Translator: Roba <roba@one-coder.com>\n"
 "Language: en\n"
