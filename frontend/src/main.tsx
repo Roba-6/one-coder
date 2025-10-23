@@ -37,7 +37,6 @@ createRoot(document.getElementById('root')!).render(
               <Route path="categories" element={<CategoryListPage />} />
               <Route path="posts/edit" element={<PostEditPage />} />
               <Route path="posts" element={<PostListPage />} />
-              <Route path="ccb" element={<div>{import.meta.env.UI_NAME}</div>} />
             </>
           ),
           publicRouter: (

@@ -1,11 +1,7 @@
-import { CircleChevronRight } from 'lucide-react'
-import {
-  CommonResponse,
-  getApi,
-  loadComplete,
-  setUrlParams,
-  useAppDispatch,
-} from 'one-public-ui'
+import '../styles/home-page.css'
+
+import { completed } from 'one-public-ui'
+import { CommonResponse, getApi, setUrlParams, useAppDispatch } from 'one-public-ui'
 import React, { useEffect } from 'react'
 import { NavLink } from 'react-router'
 
@@ -18,7 +14,7 @@ const HomePage = () => {
 
   useEffect(() => {
     getData()
-    dispatch(loadComplete())
+    completed()
   }, [dispatch])
 
   const getData = () => {
@@ -30,16 +26,18 @@ const HomePage = () => {
   return (
     <div className="single-page">
       <div className="container mx-auto min-h-[100vh]">
-        <ul className="py-32 px-12">
-          {postData.map((post: Post) => (
-            <li key={post.id}>
-              <NavLink to={setUrlParams(CONSTANT.ROUTE_URL.POST_ID, post.id)}>
-                <CircleChevronRight size={14} className="me-1 inline" />
-                {post.title}
-              </NavLink>
-            </li>
-          ))}
-        </ul>
+        <div className="post-card-list">
+          <ul className="">
+            {postData.map((post: Post) => (
+              <li key={post.id}>
+                <NavLink to={setUrlParams(CONSTANT.ROUTE_URL.POST_ID, post.id)}>
+                  <h4 className="py-2 text-foreground">{post.title}</h4>
+                  {post.overview && <p className="text-justify">{post.overview}</p>}
+                </NavLink>
+              </li>
+            ))}
+          </ul>
+        </div>
       </div>
     </div>
   )
