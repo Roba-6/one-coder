@@ -26,8 +26,8 @@ def get_current_user(request: Request, session: Session) -> bool:
     if request.headers.get("Authorization"):
         logger.debug("()" * 30)
         logger.debug(request.headers.get("Authorization"))
-        token: str = str(request.headers.get("Authorization")).split(" ")[1]
         try:
+            token: str = str(request.headers.get("Authorization")).split(" ")[1]
             logger.debug("TOKEN : " + token)
             username = get_username_from_token(token)
             logger.debug("USER NAME : " + str(username))

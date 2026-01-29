@@ -3,6 +3,7 @@ from uuid import UUID
 
 from one_public_api.common import constants as opa_cst
 from one_public_api.core import translate as _
+from one_public_api.models import Category
 from one_public_api.models.mixins.id_mixin import IdMixin
 from one_public_api.models.mixins.maintenance_mixin import MaintenanceMixin
 from one_public_api.models.mixins.timestamp_mixin import TimestampMixin
@@ -10,13 +11,12 @@ from one_public_api.models.system.user_model import User
 from sqlmodel import Field, Relationship, SQLModel
 
 from one_coder_api.common import constants
-from one_coder_api.models import Category
 
 
 class PostBase(SQLModel):
     title: Optional[str] = Field(
         default=None,
-        max_length=opa_cst.MAX_LENGTH_255,
+        max_length=opa_cst.LENGTH_255,
         description=_("The title of the post."),
     )
     overview: Optional[str] = Field(
@@ -32,7 +32,7 @@ class PostBase(SQLModel):
     category_id: Optional[UUID] = Field(
         default=None,
         nullable=True,
-        foreign_key=constants.DB_PREFIX_OCA + "categories.id",
+        foreign_key=opa_cst.DB_PREFIX_SYS + "categories.id",
         ondelete="RESTRICT",
         description=_("Assigned Category ID."),
     )
@@ -43,7 +43,7 @@ class Post(PostBase, TimestampMixin, MaintenanceMixin, IdMixin, table=True):
 
     title: str = Field(
         nullable=False,
-        max_length=opa_cst.MAX_LENGTH_255,
+        max_length=opa_cst.LENGTH_255,
         description=_("The title of the post."),
     )
 
