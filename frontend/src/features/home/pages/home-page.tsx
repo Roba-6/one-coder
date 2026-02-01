@@ -1,5 +1,6 @@
 import '../styles/home-page.css'
 
+import { SquareCode } from 'lucide-react'
 import { completed } from 'one-public-ui'
 import { CommonResponse, getApi, setUrlParams, useAppDispatch } from 'one-public-ui'
 import React, { useEffect } from 'react'
@@ -24,22 +25,25 @@ const HomePage = () => {
   }
 
   return (
-    <div className="single-page">
-      <div className="container mx-auto min-h-[100vh]">
-        <div className="post-card-list">
-          <ul className="">
-            {postData.map((post: Post) => (
-              <li key={post.id}>
-                <NavLink to={setUrlParams(CONSTANT.ROUTE_URL.POST_ID, post.id)}>
-                  <h4 className="py-2 text-foreground">{post.title}</h4>
-                  {post.overview && <p className="text-justify">{post.overview}</p>}
-                </NavLink>
-              </li>
-            ))}
-          </ul>
+    <React.Fragment>
+      <div className="single-page">
+        <div className="container mx-auto">
+          <div className="post-card-list">
+            <ul className="">
+              {postData.map((post: Post) => (
+                <li key={post.id}>
+                  <NavLink to={setUrlParams(CONSTANT.ROUTE_URL.POST_ID, post.id)}>
+                    <SquareCode className="icon" />
+                    <h4 className="py-2 text-foreground">{post.title}</h4>
+                    {post.overview && <p className="text-justify">{post.overview}</p>}
+                  </NavLink>
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
       </div>
-    </div>
+    </React.Fragment>
   )
 }
 
