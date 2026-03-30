@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: One Coder API 0.1.0-alpha.1\n"
 "Report-Msgid-Bugs-To: roba@one-coder.com\n"
-"POT-Creation-Date: 2026-01-29 23:50+0900\n"
+"POT-Creation-Date: 2026-03-30 15:17+0900\n"
 "PO-Revision-Date: 2025-05-25 16:37+0900\n"
 "Last-Translator: Roba <roba@one-coder.com>\n"
 "Language: ja\n"
@@ -96,51 +96,3 @@ msgstr ""
 #: src/one_coder_api/schemas/post_schema.py:69
 msgid "Updater"
 msgstr ""
-
-#~ msgid "The type of the category."
-#~ msgstr "カテゴリータイプ"
-
-#~ msgid "The alias of the category."
-#~ msgstr "カテゴリー名の別名（URL に表示される）。"
-
-#~ msgid "Additional details or explanation about the category."
-#~ msgstr ""
-
-#~ msgid "Parent category"
-#~ msgstr ""
-
-#~ msgid "Whether the category is enabled"
-#~ msgstr ""
-
-#~ msgid "Categories"
-#~ msgstr "カテゴリー"
-
-#~ msgid "List Public Categories"
-#~ msgstr "公開カテゴリー一覧"
-
-#~ msgid "List Categories"
-#~ msgstr "カテゴリー一覧"
-
-#~ msgid "Create Category"
-#~ msgstr ""
-
-#~ msgid "Get Category"
-#~ msgstr "カテゴリー取得"
-
-#~ msgid "The ID of the Category item to be retrieved"
-#~ msgstr "取得したいカテゴリーの ID"
-
-#~ msgid "Update Category"
-#~ msgstr "カテゴリー更新"
-
-#~ msgid "The ID of the category item to be updated"
-#~ msgstr "更新したいカテゴリーの ID"
-
-#~ msgid "Delete Category"
-#~ msgstr "カテゴリー削除"
-
-#~ msgid "The ID of the category item to be deleted"
-#~ msgstr "削除したいカテゴリーの ID"
-
-#~ msgid "This record might be referenced by other data."
-#~ msgstr ""

@@ -1,4 +1,4 @@
-import type { CommonResponse } from 'one-public-ui'
+import { type CommonResponse, type FormFieldItem, getLocalMessage } from 'one-public-ui'
 import {
   EditForm,
   enqueueMessage,
@@ -10,10 +10,10 @@ import {
 } from 'one-public-ui'
 import React, { useEffect } from 'react'
 import { useNavigate, useParams } from 'react-router'
+import { z } from 'zod/v4'
 
 import { Card, CardContent } from '@/common/components/ui/card'
 import { CONSTANT } from '@/common/constants'
-import { postItems } from '@/features/admin/posts/columns/form-items'
 import type { Post, UpdatePostRequest } from '@/features/admin/posts/types/post'
 
 const UpdatePostPage = (): React.JSX.Element => {
@@ -23,6 +23,30 @@ const UpdatePostPage = (): React.JSX.Element => {
 
   const [loadingData, setLoadingData] = React.useState<boolean>(true)
   const [data, setData] = React.useState<Post | null>(null)
+
+  const postItems: FormFieldItem[] = [
+    {
+      name: 'title',
+      label: getLocalMessage('labels.post.title'),
+      type: 'text',
+      defaultValue: '',
+      validate: z.string().min(1, { message: getLocalMessage('Title is required') }),
+    },
+    {
+      name: 'overview',
+      label: getLocalMessage('labels.post.overview'),
+      type: 'text',
+      defaultValue: '',
+      validate: z.string().min(0, { message: getLocalMessage('Overview is required') }),
+    },
+    {
+      name: 'content',
+      label: getLocalMessage('labels.post.content'),
+      type: 'textarea',
+      defaultValue: '',
+      validate: z.string().min(0, { message: getLocalMessage('Content is required') }),
+    },
+  ]
 
   useEffect(() => {
     if (id) {

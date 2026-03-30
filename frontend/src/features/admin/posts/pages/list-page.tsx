@@ -2,6 +2,7 @@ import {
   Action,
   CommonResponse,
   copyToClipboard,
+  DataColumn,
   DataList,
   deleteApi,
   enqueueMessage,
@@ -15,13 +16,28 @@ import React, { useEffect } from 'react'
 import { useNavigate } from 'react-router'
 
 import { CONSTANT } from '@/common/constants.ts'
-import { listColumns } from '@/features/admin/posts/columns/list-columns.ts'
 import type { Post } from '@/features/admin/posts/types/post'
 
 const PostListPage = (): React.ReactNode => {
   const dispatch = useAppDispatch()
   const nav = useNavigate()
   const [data, setData] = React.useState<Post[]>([])
+
+  const columns: DataColumn[] = [
+    {
+      key: 'title',
+      name: getLocalMessage('labels.post.title'),
+      isSortable: true,
+      align: 'left',
+    },
+    {
+      key: 'overview',
+      name: getLocalMessage('labels.post.overview'),
+      isSortable: true,
+      type: 'paragraph',
+      align: 'left',
+    },
+  ]
 
   const navToDetail = (id: string): void => {
     nav(setUrlParams(CONSTANT.ROUTE_URL.POST_ID, id))
@@ -100,7 +116,7 @@ const PostListPage = (): React.ReactNode => {
 
   return (
     <div className="w-full">
-      <DataList<Post> columns={listColumns} data={data} actions={actions} selectable />
+      <DataList<Post> columns={columns} data={data} actions={actions} selectable />
     </div>
   )
 }

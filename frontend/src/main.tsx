@@ -1,6 +1,7 @@
 import './index.css'
+import '@/locales/configs'
 
-import { App, getAdminPath, i18n, store } from 'one-public-ui'
+import { App, getAdminPath, store } from 'one-public-ui'
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import { Provider } from 'react-redux'
@@ -10,21 +11,11 @@ import CategoryEditPage from '@/features/admin/categories/pages/edit-page'
 import CategoryListPage from '@/features/admin/categories/pages/list-page'
 import AddPostPage from '@/features/admin/posts/pages/add-page'
 import PostListPage from '@/features/admin/posts/pages/list-page'
-import UpdatePostPage from '@/features/admin/posts/pages/update-page.tsx'
+import UpdatePostPage from '@/features/admin/posts/pages/update-page'
 import HomePage from '@/features/home/pages/home-page'
 import PostPage from '@/features/home/pages/post-page'
 
 import Box from './box'
-
-i18n.addResources('en', 'translation', {
-  abc: 'A bc！',
-  bbb: 'What',
-})
-
-i18n.addResources('ja', 'translation', {
-  abc: 'テストde',
-  bbb: '日本語x',
-})
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>

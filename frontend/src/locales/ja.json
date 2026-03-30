@@ -1,9 +1,9 @@
 {
+  "labels.category.alias": "別名",
   "labels.category.name": "カテゴリー名",
-  "labels": {
-    "category": {
-      "labels.category.name": "カテゴリー名",
-      "labels.category.alias": "別名"
-    }
-  }
+  "labels.post.title": "タイトル",
+  "labels.post.overview": "概要",
+  "labels.post.content": "内容",
+  "menus.blogs": "ブログ",
+  "menus.posts": "投稿"
 }
