@@ -11,4 +11,5 @@ export interface Post extends PostBase {
   content?: string
 }
 
-export type PostRequest = PostBase
+export type CreatePostRequest = PostBase
+export type UpdatePostRequest = PostBase
