@@ -83,10 +83,10 @@ services:
 
 #  certbot:
 #    image: certbot/certbot
-#    user: "${UID}:${GID}"
+#    user: "${USER_ID}:${GROUP_ID}"
 #    environment:
-#      - UID=${UID}
-#      - GID=${GID}
+#      - UID=${USER_ID}
+#      - GID=${GROUP_ID}
 #    volumes:
 #      - ./resources/ssl-crt:/etc/letsencrypt
 #      - ./resources/www:/var/www/certbot
