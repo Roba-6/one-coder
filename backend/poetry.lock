@@ -322,14 +322,14 @@ files = [
 
 [[package]]
 name = "click"
-version = "8.3.1"
+version = "8.3.2"
 description = "Composable command line interface toolkit"
 optional = false
 python-versions = ">=3.10"
 groups = ["main"]
 files = [
-    {file = "click-8.3.1-py3-none-any.whl", hash = "sha256:981153a64e25f12d547d3426c367a4857371575ee7ad18df2a6183ab0545b2a6"},
-    {file = "click-8.3.1.tar.gz", hash = "sha256:12ff4785d337a1bb490bb7e9c2b1ee5da3112e94a8622f26a6c77f5d2fc6842a"},
+    {file = "click-8.3.2-py3-none-any.whl", hash = "sha256:1924d2c27c5653561cd2cae4548d1406039cb79b858b747cfea24924bbc1616d"},
+    {file = "click-8.3.2.tar.gz", hash = "sha256:14162b8b3b3550a7d479eafa77dfd3c38d9dc8951f6f69c78913a8f9a7540fd5"},
 ]
 
 [package.dependencies]
@@ -848,14 +848,14 @@ files = [
 
 [[package]]
 name = "one-public-api"
-version = "0.1.0a15"
+version = "0.1.0a18"
 description = "This package provides the API layer of the One Public Framework."
 optional = false
 python-versions = "<4.0,>=3.11"
 groups = ["main"]
 files = [
-    {file = "one_public_api-0.1.0a15-py3-none-any.whl", hash = "sha256:3efc2fc17b5e081ce2fcf2498b1d5e1c1d4ca551e0cc48dce9200fdcad65adac"},
-    {file = "one_public_api-0.1.0a15.tar.gz", hash = "sha256:78d59d40243a4eee1c3437a347175892505004f51b5ff4e3d6fdac0e19a4fd2f"},
+    {file = "one_public_api-0.1.0a18-py3-none-any.whl", hash = "sha256:5f01fdd042fdd3dde9714878adde37f23c420fc93cb06a912a47e900e8482b59"},
+    {file = "one_public_api-0.1.0a18.tar.gz", hash = "sha256:cf712169a329ead886555b3582596ef1fd0c25198687377bbb92da1ef43ea8cf"},
 ]
 
 [package.dependencies]
@@ -1221,14 +1221,14 @@ windows-terminal = ["colorama (>=0.4.6)"]
 
 [[package]]
 name = "pyjwt"
-version = "2.11.0"
+version = "2.12.1"
 description = "JSON Web Token implementation in Python"
 optional = false
 python-versions = ">=3.9"
 groups = ["main"]
 files = [
-    {file = "pyjwt-2.11.0-py3-none-any.whl", hash = "sha256:94a6bde30eb5c8e04fee991062b534071fd1439ef58d2adc9ccb823e7bcd0469"},
-    {file = "pyjwt-2.11.0.tar.gz", hash = "sha256:35f95c1f0fbe5d5ba6e43f00271c275f7a1a4db1dab27bf708073b75318ea623"},
+    {file = "pyjwt-2.12.1-py3-none-any.whl", hash = "sha256:28ca37c070cad8ba8cd9790cd940535d40274d22f80ab87f3ac6a713e6e8454c"},
+    {file = "pyjwt-2.12.1.tar.gz", hash = "sha256:c74a7a2adf861c04d002db713dd85f84beb242228e671280bf709d765b03672b"},
 ]
 
 [package.extras]
@@ -1877,4 +1877,4 @@ files = [
 [metadata]
 lock-version = "2.1"
 python-versions = ">=3.11,<4.0"
-content-hash = "5be9911a0d7d01dc62070c3e2634ca1e005deeb3703e859c2a1a53cf1c4df180"
+content-hash = "1e0a1c409bf0e5c8922a3e87c01d89aa17b7a37d8655cb5ae06ad8c51d1ca496"
