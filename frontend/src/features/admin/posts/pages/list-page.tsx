@@ -12,8 +12,8 @@ import {
   setUrlParams,
   useAppDispatch,
 } from 'one-public-ui'
-import React, { useEffect } from 'react'
-import { useNavigate } from 'react-router'
+import React, { useEffect, useState } from 'react'
+import { useNavigate, useSearchParams } from 'react-router'
 
 import { CONSTANT } from '@/common/constants.ts'
 import type { Post } from '@/features/admin/posts/types/post'
@@ -21,7 +21,10 @@ import type { Post } from '@/features/admin/posts/types/post'
 const PostListPage = (): React.ReactNode => {
   const dispatch = useAppDispatch()
   const nav = useNavigate()
-  const [data, setData] = React.useState<Post[]>([])
+  const [searchParams] = useSearchParams()
+  const [data, setData] = useState<Post[]>([])
+  const [total, setTotal] = useState<number>(0)
+  const [loading, setLoading] = useState<boolean>(true)
 
   const columns: DataColumn[] = [
     {
@@ -103,20 +106,36 @@ const PostListPage = (): React.ReactNode => {
   ]
 
   useEffect(() => {
+    setLoading(true)
     getData()
-  }, [])
+  }, [searchParams])
 
   const getData = () => {
-    getApi<CommonResponse>(CONSTANT.API_URL.POST_ADMIN, {}).then(
-      (res: CommonResponse) => {
-        setData(res.results as Post[])
-      }
-    )
+    getApi<CommonResponse>(CONSTANT.API_URL.POST_ADMIN, {
+      limit: searchParams.get('size') || '10',
+      offset:
+        (parseInt(searchParams.get('page') || '1') - 1) *
+        parseInt(searchParams.get('size') || '10'),
+      orderBy: searchParams.getAll('orderBy'),
+      keywords: searchParams.get('keywords') || '',
+      filters: searchParams.getAll('filters') || [],
+    }).then((res: CommonResponse) => {
+      setData(res.results as Post[])
+      setTotal(res.count!)
+      setLoading(false)
+    })
   }
 
   return (
     <div className="w-full">
-      <DataList<Post> columns={columns} data={data} actions={actions} selectable />
+      <DataList<Post>
+        columns={columns}
+        data={data}
+        total={total}
+        actions={actions}
+        loading={loading}
+        selectable
+      />
     </div>
   )
 }
