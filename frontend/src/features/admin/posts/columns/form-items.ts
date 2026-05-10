@@ -22,6 +22,7 @@ export const newPostItems: FormFieldItem[] = [
     label: getLocalMessage('labels.post.content'),
     type: 'textarea',
     defaultValue: '',
+    className: 'min-h-30 max-h-[80vh]',
     validate: z.string().min(0, { message: getLocalMessage('Content is required') }),
   },
 ]

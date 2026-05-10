@@ -1,7 +1,7 @@
 import '../styles/home-page.css'
 
 import { SquareCode } from 'lucide-react'
-import { completed } from 'one-public-ui'
+import { completed, useGoogleAnalytics4 } from 'one-public-ui'
 import { CommonResponse, getApi, setUrlParams, useAppDispatch } from 'one-public-ui'
 import React, { useEffect } from 'react'
 import { NavLink } from 'react-router'
@@ -12,6 +12,8 @@ import type { Post } from '@/features/admin/posts/types/post'
 const HomePage = () => {
   const dispatch = useAppDispatch()
   const [postData, setPostData] = React.useState<Post[]>([])
+
+  useGoogleAnalytics4()
 
   useEffect(() => {
     getData()
