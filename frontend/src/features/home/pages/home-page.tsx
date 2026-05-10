@@ -19,9 +19,11 @@ const HomePage = () => {
   }, [dispatch])
 
   const getData = () => {
-    getApi<CommonResponse>(CONSTANT.API_URL.POST, {}).then((res: CommonResponse) => {
-      setPostData(res.results as Post[])
-    })
+    getApi<CommonResponse>(CONSTANT.API_URL.POST, { orderBy: 'updated_at_desc' }).then(
+      (res: CommonResponse) => {
+        setPostData(res.results as Post[])
+      }
+    )
   }
 
   return (
