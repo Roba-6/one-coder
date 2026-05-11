@@ -6,6 +6,7 @@ import {
   loadComplete,
   setUrlParams,
   useAppDispatch,
+  useGoogleAnalytics4,
 } from 'one-public-ui'
 import React, { useEffect } from 'react'
 import Markdown from 'react-markdown'
@@ -22,6 +23,8 @@ const PostPage = () => {
   const { id } = useParams()
   const dispatch = useAppDispatch()
   const [postData, setPostData] = React.useState<Post>()
+
+  useGoogleAnalytics4()
 
   useEffect(() => {
     console.log(id)

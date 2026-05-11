@@ -1,7 +1,7 @@
 import '../styles/home-page.css'
 
 import { SquareCode } from 'lucide-react'
-import { completed } from 'one-public-ui'
+import { completed, useGoogleAnalytics4 } from 'one-public-ui'
 import { CommonResponse, getApi, setUrlParams, useAppDispatch } from 'one-public-ui'
 import React, { useEffect } from 'react'
 import { NavLink } from 'react-router'
@@ -13,15 +13,19 @@ const HomePage = () => {
   const dispatch = useAppDispatch()
   const [postData, setPostData] = React.useState<Post[]>([])
 
+  useGoogleAnalytics4()
+
   useEffect(() => {
     getData()
     completed()
   }, [dispatch])
 
   const getData = () => {
-    getApi<CommonResponse>(CONSTANT.API_URL.POST, {}).then((res: CommonResponse) => {
-      setPostData(res.results as Post[])
-    })
+    getApi<CommonResponse>(CONSTANT.API_URL.POST, { orderBy: 'updated_at_desc' }).then(
+      (res: CommonResponse) => {
+        setPostData(res.results as Post[])
+      }
+    )
   }
 
   return (
