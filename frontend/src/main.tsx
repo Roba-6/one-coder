@@ -4,6 +4,7 @@ import '@/locales/configs'
 import { App, getAdminPath, store } from 'one-public-ui'
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
+import { HelmetProvider } from 'react-helmet-async'
 import { Provider } from 'react-redux'
 import { Route } from 'react-router'
 
@@ -19,40 +20,42 @@ import Box from './box'
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <Provider store={store}>
-      <App
-        children={{
-          // default: <HomePage />,
-          adminRouter: (
-            <>
-              <Route path="categories/edit" element={<CategoryEditPage />} />
-              <Route path="categories" element={<CategoryListPage />} />
-              <Route path="posts/:id/edit" element={<UpdatePostPage />} />
-              <Route path="posts" element={<PostListPage />} />
-              <Route path="posts/new" element={<AddPostPage />} />
-            </>
-          ),
-          publicOutlet: (
-            <>
-              <Route index element={<HomePage />} />
-              <Route path="posts/:id" element={<PostPage />} />
-              <Route path="/aaa" element={<Box />} />
-            </>
-          ),
-        }}
-        menu={{
-          blogs: {
-            isOpened: false,
-            items: [
-              {
-                name: 'menus.posts',
-                url: getAdminPath() + '/posts',
-                icon: 'CircleGauge',
-              },
-            ],
-          },
-        }}
-      />
-    </Provider>
+    <HelmetProvider>
+      <Provider store={store}>
+        <App
+          children={{
+            // default: <HomePage />,
+            adminRouter: (
+              <>
+                <Route path="categories/edit" element={<CategoryEditPage />} />
+                <Route path="categories" element={<CategoryListPage />} />
+                <Route path="posts/:id/edit" element={<UpdatePostPage />} />
+                <Route path="posts" element={<PostListPage />} />
+                <Route path="posts/new" element={<AddPostPage />} />
+              </>
+            ),
+            publicOutlet: (
+              <>
+                <Route index element={<HomePage />} />
+                <Route path="posts/:id" element={<PostPage />} />
+                <Route path="/aaa" element={<Box />} />
+              </>
+            ),
+          }}
+          menu={{
+            blogs: {
+              isOpened: false,
+              items: [
+                {
+                  name: 'menus.posts',
+                  url: getAdminPath() + '/posts',
+                  icon: 'CircleGauge',
+                },
+              ],
+            },
+          }}
+        />
+      </Provider>
+    </HelmetProvider>
   </StrictMode>
 )
