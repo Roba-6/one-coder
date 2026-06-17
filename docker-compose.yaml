@@ -1,8 +1,7 @@
+name: oc
 services:
-  oc-db:
-    image: postgres:16
-    container_name: oc-db
-    hostname: oc-db
+  db:
+    image: postgres:18.4-alpine3.22
     restart: always
     shm_size: 128mb
     environment:
@@ -12,71 +11,82 @@ services:
       POSTGRES_PASSWORD: ${API_DB_PASS}
       POSTGRES_INITDB_ARGS: '--auth=md5'
     healthcheck:
-      test: pg_isready -U "${API_DB_USER:-postgres}" || exit 1
+      test: pg_isready -U "${DB_USER:-postgres}" || exit 1
       interval: 10s
       timeout: 5s
       retries: 3
     volumes:
-      - db_data:/var/lib/postgresql/data
+      - db_data:/var/lib/postgresql
+    command: >
+      postgres
+      -c shared_buffers=2GB
+      -c effective_cache_size=4GB
+      -c work_mem=8MB
+      -c maintenance_work_mem=256MB
+      -c max_connections=60
+    logging:
+      driver: json-file
+      options:
+        max-size: '50m'
+        max-file: '3'
     ports:
       - '5432:5432'
     networks:
       - oc-net
 
-  oc-api:
-    container_name: oc-api
-    hostname: oc-api
+  api:
     build:
       context: .
       dockerfile: backend/Dockerfile
-    image: one-coder-api
     environment:
       TZ: ${API_TIME_ZONE}
     restart: always
-    #    volumes:
-    #      - .:/code
+    volumes:
+      - ./.env:/code/.env
+      - ./logs:/code/logs
+      - ./media:/code/media
     logging:
       driver: json-file
       options:
-        max-size: '512m'
-        max-file: '30'
+        max-size: '50m'
+        max-file: '3'
     #    tty: true
     #    stdin_open: true
     #    command: [ "bash", "-l" ]
     command: >
       bash -lc "cd /code;
-                . backend/.venv/bin/activate;
-                bash manage.sh init --prod --back;
-                exec bash manage.sh start --prod --back"
+                bash manage.sh migrate;
+                bash manage.sh start --prod --back"
     depends_on:
-      oc-db:
+      db:
         condition: service_healthy
+    expose:
+      - '8000'
     ports:
       - '8000:8000'
     networks:
       - oc-net
 
-  oc-server:
-    container_name: oc-server
-    hostname: oc-server
+
+  server:
     build:
       context: .
       dockerfile: frontend/Dockerfile
-    image: one-coder-server
     volumes:
+      - ./.env:/code/.env
       - ./resources/config/default.conf:/etc/nginx/conf.d/default.conf
-      - ./resources/config/ssl.conf:/etc/nginx/conf.d/ssl.conf
-      - ./resources/ssl-crt:/ssl-crt
+    #   - ./resources/ssl.conf:/etc/nginx/conf.d/ssl.conf
+    #   - ./resources/ssl-crt:/ssl-crt
     logging:
       driver: json-file
       options:
-        max-size: '512m'
-        max-file: '30'
+        max-size: '50m'
+        max-file: '3'
     ports:
       - '80:80'
-      - '443:443'
+      # - '443:443'
     depends_on:
-      - oc-api
+      - api
     restart: always
     networks:
       - oc-net
@@ -94,6 +104,7 @@ services:
 
 volumes:
   db_data:
+
 
 networks:
   oc-net:

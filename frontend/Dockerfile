@@ -1,17 +1,23 @@
-FROM node:20 AS build
+FROM node:22.22.3-bookworm-slim AS build
+
 LABEL authors="Roba"
 
 WORKDIR /code
-COPY ../.. .
+
+COPY frontend ./frontend
+COPY scripts ./scripts
+
+COPY .env .
+COPY manage.sh .
 
 RUN corepack enable && \
     corepack prepare yarn@4.3.1 --activate
-
 RUN chmod +x manage.sh && \
     bash manage.sh init --prod --front && \
     bash manage.sh build --prod --front
 
 FROM nginx:alpine
+
 LABEL authors="Roba"
 
 EXPOSE 80

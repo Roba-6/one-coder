@@ -855,14 +855,14 @@ files = [
 
 [[package]]
 name = "one-public-api"
-version = "0.1.0a30"
+version = "0.1.0a33"
 description = "This package provides the API layer of the One Public Framework."
 optional = false
 python-versions = "<4.0,>=3.11"
 groups = ["main"]
 files = [
-    {file = "one_public_api-0.1.0a30-py3-none-any.whl", hash = "sha256:fbd6bafa85a84d4b146ef34237f950285730005de3ca4b7920c501fb7b06bd1c"},
-    {file = "one_public_api-0.1.0a30.tar.gz", hash = "sha256:610e11e66f944645d22edc2024aa0814f6e4a655a918092571b69350ab5157ea"},
+    {file = "one_public_api-0.1.0a33-py3-none-any.whl", hash = "sha256:4acea2e70646acf28c3f2da3c39f32fc8f454a33518f8093066eafbe17905973"},
+    {file = "one_public_api-0.1.0a33.tar.gz", hash = "sha256:21e8fb7fd59a8c97be78d6ef49e9745f1463e22e4c5d81842025dc7c03f8bbac"},
 ]
 
 [package.dependencies]
@@ -1904,4 +1904,4 @@ files = [
 [metadata]
 lock-version = "2.1"
 python-versions = ">=3.11,<4.0"
-content-hash = "ecf5520ddbad16961ac5e5ee02a1244394a84d82b33e8c8ca1941b719c9f2c6b"
+content-hash = "de02790b9108900d1b6c085191accbca62d471f8d0f06ffa05995a91d613db67"
