@@ -19,11 +19,11 @@ services:
       - db_data:/var/lib/postgresql
     command: >
       postgres
-      -c shared_buffers=2GB
-      -c effective_cache_size=4GB
-      -c work_mem=8MB
-      -c maintenance_work_mem=256MB
-      -c max_connections=60
+      -c shared_buffers=512MB
+      -c effective_cache_size=1536MB
+      -c work_mem=4MB
+      -c maintenance_work_mem=128MB
+      -c max_connections=30
     logging:
       driver: json-file
       options:
@@ -62,11 +62,8 @@ services:
         condition: service_healthy
     expose:
       - '8000'
-    ports:
-      - '8000:8000'
     networks:
       - oc-net
-
 
   server:
     build:
@@ -74,9 +71,11 @@ services:
       dockerfile: frontend/Dockerfile
     volumes:
       - ./.env:/code/.env
+      - ./frontend/dist:/usr/share/nginx/html
+      - ./resources/certbot:/usr/share/nginx/html/certbot
       - ./resources/config/default.conf:/etc/nginx/conf.d/default.conf
-    #   - ./resources/ssl.conf:/etc/nginx/conf.d/ssl.conf
-    #   - ./resources/ssl-crt:/ssl-crt
+      - ./resources/config/ssl.conf:/etc/nginx/conf.d/ssl.conf
+      - ./resources/ssl-crt:/ssl-crt
     logging:
       driver: json-file
       options:
@@ -84,27 +83,24 @@ services:
         max-file: '3'
     ports:
       - '80:80'
-      # - '443:443'
+      - '443:443'
     depends_on:
       - api
     restart: always
     networks:
       - oc-net
 
-#  certbot:
-#    image: certbot/certbot
-#    user: "${USER_ID}:${GROUP_ID}"
-#    environment:
-#      - UID=${USER_ID}
-#      - GID=${GROUP_ID}
-#    volumes:
-#      - ./resources/ssl-crt:/etc/letsencrypt
-#      - ./resources/www:/var/www/certbot
-#      - ./resources/logs:/var/log/letsencrypt
+  certbot:
+    image: certbot/certbot
+    volumes:
+      - ./logs:/var/log/letsencrypt
+      - ./resources/certbot:/var/www/certbot
+      - ./resources/ssl-crt:/etc/letsencrypt
+    depends_on:
+      - server
 
 volumes:
   db_data:
-
 
 networks:
   oc-net:
