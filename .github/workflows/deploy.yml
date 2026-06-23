@@ -1,0 +1,111 @@
+name: Deploy
+
+on:
+  push:
+    branches:
+      - feature/%2312-enhance-post-management-feature
+  workflow_dispatch:
+
+concurrency:
+  group: deploy
+  cancel-in-progress: false
+
+env:
+  DEPLOY_BRANCH: feature/#12-enhance-post-management-feature
+  FRONTEND_DIR: frontend
+  DIST_ARCHIVE: frontend-dist-${{ github.sha }}.tar.gz
+
+jobs:
+  deploy:
+    name: Build frontend and deploy
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Change .env settings
+        env:
+          ADMIN_URL: ${{ secrets.ADMIN_URL }}
+        run: |
+          cp .env.example .env
+          sed -i 's/APP_DOMAIN=localhost/APP_DOMAIN=one-coder.com/' .env
+          sed -i 's/UI_DEBUG=True/UI_DEBUG=False/' .env
+          sed -i 's/UI_LANGUAGE=en/UI_LANGUAGE=ja/' .env
+          sed -i 's/UI_URL=http:\/\/$APP_DOMAIN:5173/https:\/\/$APP_DOMAIN/' .env
+          sed -i 's/UI_API=http:\/\/$APP_DOMAIN:8000/UI_API=http:\/\/$APP_DOMAIN\/api/' .env
+          sed -i 's/UI_ADMIN_PATH=\/admin/UI_ADMIN_PATH=\/${secrets.ADMIN_URL}/' .env
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Enable Corepack
+        run: corepack enable
+
+      - name: Install frontend dependencies
+        run: bash manage.sh init --prod --front
+
+      - name: Build frontend
+        run: bash manage.sh build --prod --front
+
+      - name: Archive frontend dist
+        working-directory: ${{ env.FRONTEND_DIR }}
+        run: tar -C "dist" -czf "${DIST_ARCHIVE}" .
+
+      - name: Configure SSH
+        env:
+          SSH_HOST: ${{ secrets.SSH_HOST }}
+          SSH_PORT: ${{ secrets.SSH_PORT }}
+          SSH_USER: ${{ secrets.SSH_USER }}
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+          SSH_KNOWN_HOSTS: ${{ secrets.SSH_KNOWN_HOSTS }}
+        run: |
+          set -euo pipefail
+
+          mkdir -p ~/.ssh
+          chmod 700 ~/.ssh
+
+          printf '%s\n' "${SSH_PRIVATE_KEY}" > ~/.ssh/deploy_key
+          chmod 600 ~/.ssh/deploy_key
+
+          if [ -n "${SSH_KNOWN_HOSTS}" ]; then
+            printf '%s\n' "${SSH_KNOWN_HOSTS}" > ~/.ssh/known_hosts
+          else
+            ssh-keyscan -p "${SSH_PORT:-22}" "${SSH_HOST}" >> ~/.ssh/known_hosts
+          fi
+          chmod 600 ~/.ssh/known_hosts
+
+          cat > ~/.ssh/config <<EOF
+          Host deploy-server
+            HostName ${SSH_HOST}
+            User ${SSH_USER}
+            Port ${SSH_PORT:-22}
+            IdentityFile ~/.ssh/deploy_key
+            IdentitiesOnly yes
+            StrictHostKeyChecking yes
+          EOF
+          chmod 600 ~/.ssh/config
+
+      - name: Upload frontend dist
+        working-directory: ${{ env.FRONTEND_DIR }}
+        run: scp "${DIST_ARCHIVE}" "deploy-server:/tmp/${DIST_ARCHIVE}"
+
+      - name: Pull source and restart containers
+        env:
+          REMOTE_APP_DIR: ${{ secrets.REMOTE_APP_DIR }}
+        run: |
+          set -euo pipefail
+
+          ssh deploy-server \
+            "set -euo pipefail
+             cd '${REMOTE_APP_DIR}'
+             git fetch origin '${DEPLOY_BRANCH}'
+             git checkout '${DEPLOY_BRANCH}'
+             git pull --ff-only origin '${DEPLOY_BRANCH}'
+             rm -rf frontend/dist
+             mkdir -p frontend/dist
+             tar -xzf '/tmp/${DIST_ARCHIVE}' -C frontend/dist
+             rm -f '/tmp/${DIST_ARCHIVE}'
+             docker compose up -d --build"
