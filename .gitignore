@@ -1,6 +1,7 @@
 # One Public Framework
 /logs
 /media
+.env
 
 # macOS
 .DS_Store

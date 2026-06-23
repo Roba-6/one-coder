@@ -2,7 +2,6 @@
 name = "one-coder-api"
 version = "0.1.0-alpha"
 description = "This package provides the API layer of the One Coder Site."
-license = {file = "../LICENSE"}
 authors = [
     {name = "Roba",email = "roba@one-coder.com"}
 ]
@@ -19,7 +18,7 @@ include = ["src/one_coder_api/locales/**/*.mo"]
 
 [tool.poetry.dependencies]
 python = ">=3.11,<4.0"
-one-public-api = "^0.1.0a21"
+one-public-api = "^0.1.0a33"
 
 [tool.poetry.group.dev.dependencies]
 alembic = "^1.16.1"
