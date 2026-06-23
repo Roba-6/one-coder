@@ -32,8 +32,9 @@ jobs:
           sed -i 's/APP_DOMAIN=localhost/APP_DOMAIN=one-coder.com/' .env
           sed -i 's/UI_DEBUG=True/UI_DEBUG=False/' .env
           sed -i 's/UI_LANGUAGE=en/UI_LANGUAGE=ja/' .env
-          sed -i 's/UI_URL=http:\/\/\$APP_DOMAIN:5173/https:\/\/one-coder.com/' .env
-          sed -i 's/UI_API=http:\/\/\$APP_DOMAIN:8000/UI_API=https:\/\/one-coder.com\/api/' .env
+          sed -i 's/http/https' .env
+          sed -i 's/:5173//' .env
+          sed -i 's/:8000/\/api/' .env
           sed -i "s/UI_ADMIN_PATH=\/admin/UI_ADMIN_PATH=\/${ADMIN_URL}/" .env
 
       - name: Setup Node.js
