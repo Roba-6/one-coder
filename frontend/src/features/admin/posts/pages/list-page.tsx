@@ -1,180 +1,141 @@
-import { Checkbox } from '@radix-ui/react-checkbox'
 import {
-  type ColumnFiltersState,
-  getCoreRowModel,
-  getFilteredRowModel,
-  getPaginationRowModel,
-  getSortedRowModel,
-  type SortingState,
-  useReactTable,
-  type VisibilityState,
-} from '@tanstack/react-table'
-import type { ColumnDef } from '@tanstack/table-core'
-import { ArrowUpDown, MoreHorizontal } from 'lucide-react'
-import {
+  Action,
   CommonResponse,
+  copyToClipboard,
+  DataColumn,
   DataList,
-  DataPagination,
   deleteApi,
+  enqueueMessage,
+  getAdminPath,
   getApi,
   getLocalMessage,
   setUrlParams,
+  useAppDispatch,
 } from 'one-public-ui'
-import React, { useEffect } from 'react'
-import { useNavigate } from 'react-router'
+import React, { useEffect, useState } from 'react'
+import { useNavigate, useSearchParams } from 'react-router'
 
-import { Button } from '@/common/components/ui/button.tsx'
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from '@/common/components/ui/dropdown-menu.tsx'
 import { CONSTANT } from '@/common/constants.ts'
 import type { Post } from '@/features/admin/posts/types/post'
 
 const PostListPage = (): React.ReactNode => {
+  const dispatch = useAppDispatch()
   const nav = useNavigate()
-  const [sorting, setSorting] = React.useState<SortingState>([])
-  const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>([])
-  const [columnVisibility, setColumnVisibility] = React.useState<VisibilityState>({})
-  const [rowSelection, setRowSelection] = React.useState({})
-  const [data, setData] = React.useState<Post[]>([])
+  const [searchParams] = useSearchParams()
+  const [data, setData] = useState<Post[]>([])
+  const [total, setTotal] = useState<number>(0)
+  const [loading, setLoading] = useState<boolean>(true)
 
-  const columns: ColumnDef<Post>[] = [
+  const columns: DataColumn[] = [
     {
-      id: 'select',
-      header: ({ table }) => (
-        <Checkbox
-          checked={
-            table.getIsAllPageRowsSelected() ||
-            (table.getIsSomePageRowsSelected() ? 'indeterminate' : false)
-          }
-          onCheckedChange={(value) => table.toggleAllPageRowsSelected(!!value)}
-          aria-label="Select all"
-        />
-      ),
-      cell: ({ row }) => (
-        <Checkbox
-          checked={row.getIsSelected()}
-          onCheckedChange={(value) => row.toggleSelected(!!value)}
-          aria-label="Select row"
-        />
-      ),
-      enableSorting: false,
-      enableHiding: false,
+      key: 'title',
+      name: getLocalMessage('labels.post.title'),
+      isSortable: true,
+      align: 'left',
     },
     {
-      accessorKey: 'title',
-      header: 'Title',
-      cell: ({ row }) => <div className="capitalize">{row.getValue('title')}</div>,
+      key: 'overview',
+      name: getLocalMessage('labels.post.overview'),
+      isSortable: true,
+      type: 'paragraph',
+      align: 'left',
     },
-    {
-      accessorKey: 'overview',
-      header: ({ column }) => {
-        return (
-          <Button
-            variant="ghost"
-            onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}
-          >
-            Overview
-            <ArrowUpDown />
-          </Button>
+  ]
+
+  const navToDetail = (id: string): void => {
+    nav(setUrlParams(CONSTANT.ROUTE_URL.POST_ID, id))
+  }
+
+  const navToUpdate = (id: string): void => {
+    nav(setUrlParams(getAdminPath() + CONSTANT.ROUTE_URL.ADMIN_POST_UPDATE, id))
+  }
+
+  const deleteData = (id: string): void => {
+    deleteApi<CommonResponse>(setUrlParams(CONSTANT.API_URL.POST_ADMIN_ID, id))
+      .then((res: CommonResponse) => {
+        const post: Post = res.results as Post
+        console.debug(res.results as Post)
+        dispatch(
+          enqueueMessage({
+            message: {
+              code: 'I00100003',
+              message: getLocalMessage('messages.notices.I00100003', [
+                post.title as string,
+              ]),
+              detail: null,
+            },
+            status: 200,
+            type: 'success',
+          })
         )
+        getData()
+      })
+      .catch((err: CommonResponse) => {
+        console.error(err)
+      })
+  }
+
+  const actions: Action[] = [
+    {
+      name: getLocalMessage('buttons.copyId'),
+      events: {
+        handleClick: copyToClipboard,
       },
-      cell: ({ row }) => <div className="lowercase">{row.getValue('overview')}</div>,
     },
     {
-      id: 'actions',
-      enableHiding: false,
-      cell: ({ row }) => {
-        const post = row.original
-        return (
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <Button variant="ghost" className="h-8 w-8 p-0">
-                <span className="sr-only">Open menu</span>
-                <MoreHorizontal />
-              </Button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent align="end">
-              <DropdownMenuLabel>Actions</DropdownMenuLabel>
-              <DropdownMenuItem onClick={() => navigator.clipboard.writeText(post.id!)}>
-                Copy payment ID
-              </DropdownMenuItem>
-              <DropdownMenuSeparator />
-              <DropdownMenuItem>View customer</DropdownMenuItem>
-              <DropdownMenuItem>View payment details</DropdownMenuItem>
-              <DropdownMenuItem
-                onClick={() => {
-                  nav(
-                    setUrlParams(
-                      CONSTANT.ROUTE_URL.ADMIN + CONSTANT.ROUTE_URL.POST_EDIT,
-                      undefined,
-                      { id: post.id! }
-                    )
-                  )
-                }}
-              >
-                {getLocalMessage('buttons.edit')}
-              </DropdownMenuItem>
-              <DropdownMenuItem onClick={() => deleteData(post.id!)}>
-                {getLocalMessage('buttons.delete')}
-              </DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu>
-        )
+      type: 'separator',
+    },
+    {
+      name: getLocalMessage('buttons.details'),
+      events: {
+        handleClick: navToDetail,
+      },
+    },
+    {
+      name: getLocalMessage('buttons.edit'),
+      events: {
+        handleClick: navToUpdate,
+      },
+    },
+    {
+      name: getLocalMessage('buttons.delete'),
+      events: {
+        handleClick: deleteData,
       },
     },
   ]
 
-  const table = useReactTable({
-    data,
-    columns,
-    onSortingChange: setSorting,
-    onColumnFiltersChange: setColumnFilters,
-    getCoreRowModel: getCoreRowModel(),
-    getPaginationRowModel: getPaginationRowModel(),
-    getSortedRowModel: getSortedRowModel(),
-    getFilteredRowModel: getFilteredRowModel(),
-    onColumnVisibilityChange: setColumnVisibility,
-    onRowSelectionChange: setRowSelection,
-    state: {
-      sorting,
-      columnFilters,
-      columnVisibility,
-      rowSelection,
-    },
-  })
-
   useEffect(() => {
+    setLoading(true)
     getData()
-  }, [])
+  }, [searchParams])
 
   const getData = () => {
-    getApi<CommonResponse>(CONSTANT.API_URL.POST_ADMIN, {}).then(
-      (res: CommonResponse) => {
-        setData(res.results as Post[])
-      }
-    )
-  }
-
-  const deleteData = (id: string) => {
-    deleteApi<CommonResponse>(setUrlParams(CONSTANT.API_URL.POST_ADMIN_ID, id)).then(
-      (res: CommonResponse) => {
-        console.debug(res)
-        getData()
-      }
-    )
+    getApi<CommonResponse>(CONSTANT.API_URL.POST_ADMIN, {
+      limit: searchParams.get('size') || '10',
+      offset:
+        (parseInt(searchParams.get('page') || '1') - 1) *
+        parseInt(searchParams.get('size') || '10'),
+      orderBy: searchParams.getAll('orderBy'),
+      keywords: searchParams.get('keywords') || '',
+      filters: searchParams.getAll('filters') || [],
+    }).then((res: CommonResponse) => {
+      setData(res.results as Post[])
+      setTotal(res.count!)
+      setLoading(false)
+    })
   }
 
   return (
     <div className="w-full">
-      {/*<DataToolBar table={table} />*/}
-      <DataList table={table} columns={columns} />
-      <DataPagination table={table} />
+      <DataList<Post>
+        columns={columns}
+        data={data}
+        total={total}
+        actions={actions}
+        loading={loading}
+        selectable
+      />
     </div>
   )
 }
