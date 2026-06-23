@@ -3,7 +3,7 @@ name: Deploy
 on:
   push:
     branches:
-      - feature/%2312-enhance-post-management-feature
+      - feature/#12-enhance-post-management-feature
   workflow_dispatch:
 
 concurrency:
