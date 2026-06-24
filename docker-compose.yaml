@@ -92,12 +92,12 @@ services:
 
   certbot:
     image: certbot/certbot
+    profiles:
+      - cert
     volumes:
       - ./logs:/var/log/letsencrypt
       - ./resources/certbot:/var/www/certbot
       - ./resources/ssl-crt:/etc/letsencrypt
-    depends_on:
-      - server
 
 volumes:
   db_data:
