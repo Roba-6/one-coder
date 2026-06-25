@@ -109,4 +109,5 @@ jobs:
              mkdir -p frontend/dist
              tar -xzf '/tmp/${DIST_ARCHIVE}' -C frontend/dist
              rm -f '/tmp/${DIST_ARCHIVE}'
+             docker compose down
              docker compose up -d --build"
