@@ -73,8 +73,7 @@ services:
       - ./.env:/code/.env
       - ./frontend/dist:/usr/share/nginx/html
       - ./resources/certbot:/usr/share/nginx/html/certbot
-      - ./resources/config/default.conf:/etc/nginx/conf.d/default.conf
-      - ./resources/config/ssl.conf:/etc/nginx/conf.d/ssl.conf
+      - ./resources/config:/etc/nginx/conf.d
       - ./resources/ssl-crt:/ssl-crt
     logging:
       driver: json-file
