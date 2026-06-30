@@ -1,8 +1,8 @@
 import {
-  Action,
-  CommonResponse,
+  type Action,
+  type CommonResponse,
   copyToClipboard,
-  DataColumn,
+  type DataColumn,
   DataList,
   deleteApi,
   enqueueMessage,
@@ -15,7 +15,7 @@ import {
 import React, { useEffect, useState } from 'react'
 import { useNavigate, useSearchParams } from 'react-router'
 
-import { CONSTANT } from '@/common/constants.ts'
+import { CONSTANT } from '@/common/constants'
 import type { Post } from '@/features/admin/posts/types/post'
 
 const PostListPage = (): React.ReactNode => {

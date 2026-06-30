@@ -1,7 +1,7 @@
 import { zodResolver } from '@hookform/resolvers/zod'
+import type { CommonResponse } from 'one-public-ui'
 import {
   arrayToObject,
-  CommonResponse,
   getApi,
   getLocalMessage,
   i18n,

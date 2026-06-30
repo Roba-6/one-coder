@@ -1,5 +1,5 @@
 import {
-  CommonResponse,
+  type CommonResponse,
   type DataColumn,
   DataList,
   getApi,
