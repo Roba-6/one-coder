@@ -52,6 +52,12 @@ const PostPage = (): React.JSX.Element => {
     dispatch(loadComplete())
   }, [id, dispatch])
 
+  useEffect(() => {
+    if (!postData?.title) return
+
+    document.title = `${postData.title} | ${appSettings.name}`
+  }, [appSettings.name, postData?.title])
+
   const getData = () => {
     getApi<CommonResponse>(setUrlParams(CONSTANT.API_URL.POST_ID, id), {}).then(
       // getApi<CommonResponse>(CONSTANT.API_URL.POST, { targetId: id }).then(
@@ -65,7 +71,6 @@ const PostPage = (): React.JSX.Element => {
     <>
       {postData?.title && (
         <Helmet>
-          <title>{`${postData?.title} | ${appSettings.name}`}</title>
           <meta name="description" content={postData?.overview} />
         </Helmet>
       )}
