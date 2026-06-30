@@ -79,7 +79,7 @@ const PostPage = (): React.JSX.Element => {
 
       <div className="post-panel">
         <header className="post-header">
-          <time>
+          <time className="inline-block mb-2">
             <small className="me-3">
               <CalendarDays size={16} className="me-1 inline-block align-text-bottom" />
               {formatDay(postData?.createdAt as string, 'date')}
