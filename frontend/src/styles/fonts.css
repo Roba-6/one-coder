@@ -1,0 +1,33 @@
+@font-face {
+  font-family: "tommy";
+  src: url("../assets/fonts/MADE-TOMMY-Light_PERSONAL-USE.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "tommy";
+  src: url("../assets/fonts/MADE-TOMMY-Medium_PERSONAL-USE.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Rounded X m+";
+  src: url("../assets/fonts/rounded-x-mplus-2m-light.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Rounded X m+";
+  src: url("../assets/fonts/rounded-x-mplus-2m-medium.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+}
+
+@theme {
+  --font-sans:
+    tommy, "Rounded X m+", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
+    "Noto Color Emoji";
+}
