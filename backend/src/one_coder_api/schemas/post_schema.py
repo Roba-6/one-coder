@@ -5,6 +5,7 @@ from one_public_api.common.utility.str import to_camel
 from one_public_api.core import translate as _
 from one_public_api.models.mixins.id_mixin import IdMixin
 from one_public_api.models.mixins.timestamp_mixin import TimestampMixin
+from one_public_api.schemas import example_datetime
 from one_public_api.schemas.base_schema import UserPublicResponse, example_user
 from one_public_api.schemas.category_schema import CategoryPublicResponse
 from one_public_api.schemas.response_schema import example_audit, example_id
@@ -22,7 +23,7 @@ example_base: Dict[str, Any] = {
 # ----- Public Schemas -----------------------------------------------------------------
 
 
-class PostPublicResponse(PostBase, IdMixin):
+class PostPublicResponse(PostBase, IdMixin, TimestampMixin):
     category: Optional[CategoryPublicResponse] = Field(
         default=None, description=_("Category")
     )
@@ -30,7 +31,7 @@ class PostPublicResponse(PostBase, IdMixin):
     model_config = {
         "alias_generator": to_camel,
         "json_schema_extra": {
-            "examples": [{**example_base, **example_id}],
+            "examples": [{**example_base, **example_id, **example_datetime}],
         },
     }
 

@@ -6940,7 +6940,7 @@ __metadata:
     eslint-plugin-simple-import-sort: "npm:^12.1.1"
     globals: "npm:^16.3.0"
     lucide-react: "npm:^0.544.0"
-    one-public-ui: "npm:^0.1.0-alpha.39"
+    one-public-ui: "npm:^0.1.0-alpha.40"
     prettier: "npm:^3.6.2"
     react: "npm:^19.1.0"
     react-dom: "npm:^19.1.0"
@@ -6961,9 +6961,9 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"one-public-ui@npm:^0.1.0-alpha.39":
-  version: 0.1.0-alpha.39
-  resolution: "one-public-ui@npm:0.1.0-alpha.39"
+"one-public-ui@npm:^0.1.0-alpha.40":
+  version: 0.1.0-alpha.40
+  resolution: "one-public-ui@npm:0.1.0-alpha.40"
   dependencies:
     "@hookform/resolvers": "npm:^5.2.0"
     "@radix-ui/react-avatar": "npm:^1.1.11"
@@ -7010,7 +7010,7 @@ __metadata:
     tailwindcss: "npm:^4.1.11"
     vaul: "npm:^1.1.2"
     zod: "npm:^4.0.10"
-  checksum: 10c0/b5f8ef7c92d7a27a4afd8425760a3a8a7966d290fd888969785e98d09e7f8776e195964620414b8a5c2b424173a83b74bd6058af1de3e918df3648be1a84e240
+  checksum: 10c0/2ceb2e43c3457be996f9763e8a3ae488c3189229060bc536ff2e12f28a17d0711a6e2b8b96e50472fb9a14821e0da536bdddf89323ab5b6769ea8f3bec4ea149
   languageName: node
   linkType: hard
 

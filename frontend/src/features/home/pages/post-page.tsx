@@ -1,5 +1,7 @@
+import { CalendarDays, FilePenLine } from 'lucide-react'
 import {
   type CommonResponse,
+  formatDay,
   getApi,
   loadComplete,
   selectAppSettings,
@@ -76,7 +78,19 @@ const PostPage = (): React.JSX.Element => {
       )}
 
       <div className="post-panel">
-        <h1 className="post-title">{postData?.title}</h1>
+        <header className="post-header">
+          <time>
+            <small className="me-3">
+              <CalendarDays size={16} className="me-1 inline-block align-text-bottom" />
+              {formatDay(postData?.createdAt as string, 'date')}
+            </small>
+            <small>
+              <FilePenLine size={16} className="me-1 inline-block align-text-bottom" />
+              {formatDay(postData?.updatedAt as string, 'date')}
+            </small>
+          </time>
+          <h1 className="post-title">{postData?.title}</h1>
+        </header>
         <p className="post-description">{postData?.overview}</p>
         <article className="post-content">
           <Markdown

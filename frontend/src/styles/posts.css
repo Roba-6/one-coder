@@ -1,8 +1,12 @@
 .post-panel {
   @apply px-0 md:px-4;
 
-  .post-title {
-    @apply py-12 text-2xl font-bold;
+  .post-header {
+    @apply pt-8 pb-12;
+
+    .post-title {
+      @apply text-2xl font-bold;
+    }
   }
   .post-description {
     @apply p-4 bg-[var(--color-leaf-200)] dark:bg-[var(--color-leaf-900)]
@@ -90,7 +94,6 @@
         }
       }
     }
-
     pre {
       @apply mb-4 rounded-md overflow-hidden
         border-[var(--color-ash-900)] dark:border-[var(--color-espresso-400)]
@@ -99,6 +102,11 @@
       > div {
         @apply !m-0;
       }
+    }
+    a {
+      @apply text-[var(--color-coral-500)] dark:text-[var(--color-coral-600)]
+        border-[var(--color-coral-500)] dark:border-[var(--color-coral-600)]
+        border-dashed border-b-1;
     }
   }
 
