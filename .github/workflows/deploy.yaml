@@ -32,7 +32,7 @@ jobs:
           sed -i 's|APP_DOMAIN=localhost|APP_DOMAIN=one-coder.com|' .env
           sed -i 's|UI_DEBUG=True|UI_DEBUG=False|' .env
           sed -i 's|UI_LANGUAGE=en|UI_LANGUAGE=ja|' .env
-          sed -i 's|UI_LOGO_PATH=|UI_LOGO_PATH=/src/assets/images/logo.svg,/src/assets/images/logo-dark.svg|' .env
+          sed -i 's|UI_LOGO_PATH=|UI_LOGO_PATH=/images/logo.svg,/images/logo-dark.svg|' .env
           sed -i 's|http|https|' .env
           sed -i 's|:5173||' .env
           sed -i 's|:8000|/api|' .env
