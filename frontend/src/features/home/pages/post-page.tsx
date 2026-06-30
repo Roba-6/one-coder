@@ -73,7 +73,7 @@ const PostPage = (): React.JSX.Element => {
       <div className="post-panel">
         <h1 className="post-title">{postData?.title}</h1>
         <p className="post-description">{postData?.overview}</p>
-        <div className="post-content">
+        <article className="post-content">
           <Markdown
             rehypePlugins={[rehypeRaw, remarkGfm]}
             components={{
@@ -97,7 +97,7 @@ const PostPage = (): React.JSX.Element => {
           >
             {postData?.content}
           </Markdown>
-        </div>
+        </article>
       </div>
     </>
   )
