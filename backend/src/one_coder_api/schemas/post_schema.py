@@ -30,6 +30,7 @@ class PostPublicResponse(PostBase, IdMixin, TimestampMixin):
 
     model_config = {
         "alias_generator": to_camel,
+        "populate_by_name": True,
         "json_schema_extra": {
             "examples": [{**example_base, **example_id, **example_datetime}],
         },
