@@ -1,0 +1,113 @@
+.post-panel {
+  @apply px-0 md:px-4;
+
+  .post-header {
+    @apply pt-6 pb-12;
+
+    .post-title {
+      @apply text-2xl font-bold;
+    }
+  }
+  .post-description {
+    @apply p-4 bg-[var(--color-leaf-200)] dark:bg-[var(--color-leaf-900)]
+      border-dashed border-[1px] rounded-sm
+      border-[var(--color-leaf-500)] dark:border-[var(--color-leaf-700)];
+  }
+  .post-content {
+    @apply py-4;
+
+    > ul li {
+      @apply relative ps-5;
+    }
+    > ul li::before {
+      @apply ps-5 w-[0.75rem] h-[0.75rem] absolute left-0 top-[0.3rem]
+        bg-[url('assets/images/icon-paw-print.svg')] bg-contain bg-left bg-no-repeat
+        content-[''];
+    }
+    > ul li:nth-child(odd)::before {
+      @apply -rotate-90 top-[2px] -left-1;
+    }
+    ul, p {
+      @apply mb-4
+    }
+    kbd {
+      @apply mx-0.5 px-1.5 py-0.25 border border-b-3 border-[var(--color-ash-700)] rounded
+        bg-[var(--color-ash-500)] shadow-white shadow-inner transition-all
+        text-sm text-[var(--color-ash-900)] leading-7 align-bottom;
+    }
+    > p code,
+    li > p code {
+      @apply px-1.5 py-0.5 bg-[var(--color-leaf-200)] dark:bg-[var(--color-leaf-900)]
+        border-dashed border-[1px] rounded-sm
+        border-[var(--color-leaf-500)] dark:border-[var(--color-leaf-700)]
+        text-sm text-[var(--color-leaf-700)] leading-6 align-bottom;
+    }
+    h2 {
+      @apply mt-10 mb-4 pl-3 border-solid border-l-[5px]
+        border-[var(--color-leaf-500)] dark:border-[var(--color-leaf-700)]
+        rounded-md text-xl font-bold;
+    }
+    table {
+      @apply mb-4 w-full border-separate border-spacing-0 text-base;
+
+      tr {
+        @apply transition-all;
+
+        &:last-child {
+          td {
+            &:first-child {
+              @apply rounded-bl-md;
+            }
+            &:last-child {
+              @apply rounded-br-md;
+            }
+          }
+        }
+      }
+      tr:not(:has(th)):hover {
+        @apply bg-[var(--color-leaf-200)] dark:bg-[var(--color-leaf-700)] transition-all;
+      }
+      th {
+        @apply py-1 px-2 bg-[var(--color-leaf-300)] dark:bg-[var(--color-espresso-600)]
+          border-[var(--color-leaf-600)] dark:border-[var(--color-espresso-400)]
+          border-b-1 border-t-1 border-l-1
+          text-[var(--color-leaf-800)] dark:text-[var(--color-espresso-200)];
+
+        &:first-child {
+          @apply rounded-tl-md border-l-1;
+        }
+        &:last-child {
+          @apply rounded-tr-md border-r-1;
+        }
+      }
+      td {
+        @apply py-0.5 px-2
+          bg-[var(--color-antique-300)] dark:bg-[var(--color-espresso-800)]
+          border-[var(--color-leaf-600)] dark:border-[var(--color-espresso-400)]
+          border-l-1 border-b-1;
+
+        &:first-child {
+          @apply border-l-1;
+        }
+        &:last-child {
+          @apply border-r-1;
+        }
+      }
+    }
+    pre {
+      @apply mb-4 rounded-md overflow-hidden
+        border-[var(--color-ash-900)] dark:border-[var(--color-espresso-400)]
+        border-solid border-1;
+
+      > div {
+        @apply !m-0;
+      }
+    }
+    a {
+      @apply text-[var(--color-coral-500)] dark:text-[var(--color-coral-600)]
+        border-[var(--color-coral-500)] dark:border-[var(--color-coral-600)]
+        border-dashed border-b-1;
+    }
+  }
+
+}

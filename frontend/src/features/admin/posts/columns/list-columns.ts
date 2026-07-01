@@ -15,4 +15,18 @@ export const listColumns: DataColumn[] = [
     type: 'paragraph',
     align: 'left',
   },
+  {
+    key: 'createdAt',
+    name: getLocalMessage('labels.createdAt'),
+    isSortable: true,
+    type: 'datetime',
+    align: 'left',
+  },
+  {
+    key: 'updatedAt',
+    name: getLocalMessage('labels.updatedAt'),
+    isSortable: true,
+    type: 'datetime',
+    align: 'left',
+  },
 ]

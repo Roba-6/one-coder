@@ -1,7 +1,8 @@
 # One Public Framework
+.env
 /logs
 /media
-.env
+/resources/ssl-crt
 
 # macOS
 .DS_Store

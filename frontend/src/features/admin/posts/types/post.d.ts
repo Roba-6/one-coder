@@ -2,6 +2,8 @@ interface PostBase {
   title: string
   overview: string
   content: string
+  createdAt?: string
+  updatedAt?: string
 }
 
 export interface Post extends PostBase {
