@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>One Coder</title>
+    <link>https://one-coder.com/</link>
+    <description>One Coder の記事を配信します．</description>
+    <language>ja-JP</language>
+    <lastBuildDate>Wed, 01 Jul 2026 12:00:00 +0900</lastBuildDate>
+    <generator>One Coder</generator>
+
+    <item>
+      <title>Docker よく使うコマンド</title>
+      <link>https://one-coder.com/posts/f59e0a6e-992e-40b6-8632-2f30d982fdfc</link>
+      <guid isPermaLink="true">https://one-coder.com/posts/f59e0a6e-992e-40b6-8632-2f30d982fdfc</guid>
+      <pubDate>Wed, 01 Jul 2026 23:14:00 +0900</pubDate>
+      <description><![CDATA[
+        Dockerで，コンテナの起動，状態確認，ログ調査，イメージ操作，後片付けに使うコマンドを目的別にまとめたメモ．
+      ]]></description>
+    </item>
+
+    <item>
+      <title>vi の最低限の使い方</title>
+      <link>https://one-coder.com/posts/95d9c63e-c912-491f-983d-1cdc8740b038</link>
+      <guid isPermaLink="true">https://one-coder.com/posts/95d9c63e-c912-491f-983d-1cdc8740b038</guid>
+      <pubDate>Fri, 26 Jun 2026 21:54:00 +0900</pubDate>
+      <description><![CDATA[
+        vi でファイルを開いたときに，最低限編集して保存・終了するための操作メモ．
+      ]]></description>
+    </item>
+
+    <item>
+      <title>One Coder を始める</title>
+      <link>https://one-coder.com/posts/d8b634f1-fff4-441b-9ec4-2955f1448475</link>
+      <guid isPermaLink="true">https://one-coder.com/posts/d8b634f1-fff4-441b-9ec4-2955f1448475</guid>
+      <pubDate>Thu, 25 Jun 2026 21:52:00 +0900</pubDate>
+      <description><![CDATA[
+        One Public Framework を作ることをきっかけに，生活，趣味，知識を記録していくための個人サイト One Coder を始める．
+      ]]></description>
+    </item>
+
+  </channel>
+</rss>

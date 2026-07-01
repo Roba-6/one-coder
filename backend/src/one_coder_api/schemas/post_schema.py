@@ -60,7 +60,7 @@ class PostUpdateRequest(PostBase):
     }
 
 
-class PostResponse(PostPublicResponse, TimestampMixin):
+class PostResponse(PostPublicResponse):
     creator: Optional[UserPublicResponse] = Field(
         default=None,
         description=_("Creator"),
