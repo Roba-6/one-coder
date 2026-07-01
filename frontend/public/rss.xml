@@ -3,10 +3,20 @@
   <channel>
     <title>One Coder</title>
     <link>https://one-coder.com/</link>
-    <description>One Coder の記事を配信します．</description>
+    <description>One Coder の記事を配信する．</description>
     <language>ja-JP</language>
-    <lastBuildDate>Wed, 01 Jul 2026 12:00:00 +0900</lastBuildDate>
+    <lastBuildDate>Wed, 01 Jul 2026 22:27:00 +0900</lastBuildDate>
     <generator>One Coder</generator>
+
+    <item>
+      <title>Docker Compose よく使うコマンド</title>
+      <link>https://one-coder.com/posts/e27a3e4d-1c7a-4833-907b-4ee9d7bb4974</link>
+      <guid isPermaLink="true">https://one-coder.com/posts/e27a3e4d-1c7a-4833-907b-4ee9d7bb4974</guid>
+      <pubDate>Wed, 01 Jul 2026 22:27:00 +0900</pubDate>
+      <description><![CDATA[
+        Docker Composeで，複数サービスの起動，状態確認，ログ調査，コンテナ操作，終了に使うコマンドをまとめたメモ．
+      ]]></description>
+    </item>
 
     <item>
       <title>Docker よく使うコマンド</title>
