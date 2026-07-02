@@ -1,5 +1,5 @@
 import { CalendarDays, SquareCode } from 'lucide-react'
-import { completed, formatDay, useGoogleAnalytics4 } from 'one-public-ui'
+import { completed, formatDay, getEnv, useGoogleAnalytics4 } from 'one-public-ui'
 import {
   type CommonResponse,
   getApi,
@@ -7,6 +7,7 @@ import {
   useAppDispatch,
 } from 'one-public-ui'
 import React, { useEffect } from 'react'
+import { Helmet } from 'react-helmet-async'
 import { NavLink } from 'react-router'
 
 import {
@@ -40,6 +41,10 @@ const HomePage = (): React.JSX.Element => {
 
   return (
     <React.Fragment>
+      <Helmet>
+        <meta name="description" content={getEnv('UI_DESCRIPTION') as string} />
+      </Helmet>
+
       <div className="mx-auto">
         <ul className="card-list">
           {postData.map((post: Post) => (
