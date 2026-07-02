@@ -167,7 +167,7 @@
     @apply cursor-pointer transition-all;
 
     .card-description {
-      @apply mt-2 text-[var(--descript-foreground)] text-justify;
+      @apply mt-2 px-6 text-justify;
     }
   }
 

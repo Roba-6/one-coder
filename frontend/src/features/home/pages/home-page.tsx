@@ -1,4 +1,4 @@
-import { CalendarDays, SquareCode } from 'lucide-react'
+import { CalendarDays } from 'lucide-react'
 import { completed, formatDay, getEnv, useGoogleAnalytics4 } from 'one-public-ui'
 import {
   type CommonResponse,
@@ -13,7 +13,6 @@ import { NavLink } from 'react-router'
 import {
   Card,
   CardDescription,
-  CardFooter,
   CardHeader,
   CardTitle,
 } from '@/common/components/ui/card'
@@ -50,25 +49,22 @@ const HomePage = (): React.JSX.Element => {
           {postData.map((post: Post) => (
             <li key={post.id} className="card-item">
               <NavLink to={setUrlParams(CONSTANT.ROUTE_URL.POST_ID, post.id)}>
-                <Card className="h-full">
+                <Card className="h-full gap-0.5">
                   <CardHeader>
-                    <CardTitle className="">
-                      <SquareCode className="icon inline-block" />
-                      <span className="ms-1 relative top-0.5">{post.title}</span>
-                    </CardTitle>
-                    <CardDescription className="card-description">
-                      {post.overview}
-                    </CardDescription>
+                    <CardTitle>{post.title}</CardTitle>
                   </CardHeader>
-                  <CardFooter className="relative bottom-0 ms-auto">
-                    <small>
-                      <CalendarDays
-                        size={16}
-                        className="me-1 inline-block align-text-bottom"
-                      />
-                      {formatDay(post?.createdAt as string, 'date')}
-                    </small>
-                  </CardFooter>
+                  <CardDescription className="card-description">
+                    <div className="mb-2 text-[var(--descript-foreground)]">
+                      <small>
+                        <CalendarDays
+                          size={16}
+                          className="me-1 inline-block align-text-bottom"
+                        />
+                        {formatDay(post?.createdAt as string, 'date')}
+                      </small>
+                    </div>
+                    <div className="text-justify">{post.overview}</div>
+                  </CardDescription>
                 </Card>
               </NavLink>
             </li>
