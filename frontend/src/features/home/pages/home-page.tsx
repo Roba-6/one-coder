@@ -1,5 +1,5 @@
-import { SquareCode } from 'lucide-react'
-import { completed, useGoogleAnalytics4 } from 'one-public-ui'
+import { CalendarDays, SquareCode } from 'lucide-react'
+import { completed, formatDay, useGoogleAnalytics4 } from 'one-public-ui'
 import {
   type CommonResponse,
   getApi,
@@ -12,6 +12,7 @@ import { NavLink } from 'react-router'
 import {
   Card,
   CardDescription,
+  CardFooter,
   CardHeader,
   CardTitle,
 } from '@/common/components/ui/card'
@@ -50,12 +51,19 @@ const HomePage = (): React.JSX.Element => {
                       <SquareCode className="icon inline-block" />
                       <span className="ms-1 relative top-0.5">{post.title}</span>
                     </CardTitle>
-                    {post.overview && (
-                      <CardDescription className="card-description">
-                        {post.overview}
-                      </CardDescription>
-                    )}
+                    <CardDescription className="card-description">
+                      {post.overview}
+                    </CardDescription>
                   </CardHeader>
+                  <CardFooter className="relative bottom-0 ms-auto">
+                    <small>
+                      <CalendarDays
+                        size={16}
+                        className="me-1 inline-block align-text-bottom"
+                      />
+                      {formatDay(post?.createdAt as string, 'date')}
+                    </small>
+                  </CardFooter>
                 </Card>
               </NavLink>
             </li>

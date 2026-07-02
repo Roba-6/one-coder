@@ -27,6 +27,8 @@ jobs:
       - name: Change .env settings
         env:
           ADMIN_URL: ${{ secrets.ADMIN_URL }}
+          UI_KEYWORDS: ${{ secrets.UI_KEYWORDS }}
+          UI_DESCRIPTION: ${{ secrets.UI_DESCRIPTION }}
         run: |
           cp .env.example .env
           sed -i 's|APP_DOMAIN=localhost|APP_DOMAIN=one-coder.com|' .env
@@ -37,6 +39,8 @@ jobs:
           sed -i 's|:5173||' .env
           sed -i 's|:8000|/api|' .env
           sed -i "s|UI_ADMIN_PATH=/admin|UI_ADMIN_PATH=/${ADMIN_URL}|" .env
+          sed -i "s|UI_KEYWORDS=|UI_KEYWORDS=${UI_KEYWORDS}|" .env
+          sed -i "s|UI_DESCRIPTION=|UI_DESCRIPTION=${UI_DESCRIPTION}|" .env
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
