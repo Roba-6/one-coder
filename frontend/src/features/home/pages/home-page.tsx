@@ -1,15 +1,25 @@
-import '../styles/home-page.css'
-
-import { SquareCode } from 'lucide-react'
-import { completed, useGoogleAnalytics4 } from 'one-public-ui'
-import { CommonResponse, getApi, setUrlParams, useAppDispatch } from 'one-public-ui'
+import { CalendarDays } from 'lucide-react'
+import { completed, formatDay, getEnv, useGoogleAnalytics4 } from 'one-public-ui'
+import {
+  type CommonResponse,
+  getApi,
+  setUrlParams,
+  useAppDispatch,
+} from 'one-public-ui'
 import React, { useEffect } from 'react'
+import { Helmet } from 'react-helmet-async'
 import { NavLink } from 'react-router'
 
+import {
+  Card,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from '@/common/components/ui/card'
 import { CONSTANT } from '@/common/constants'
 import type { Post } from '@/features/admin/posts/types/post'
 
-const HomePage = () => {
+const HomePage = (): React.JSX.Element => {
   const dispatch = useAppDispatch()
   const [postData, setPostData] = React.useState<Post[]>([])
 
@@ -30,22 +40,36 @@ const HomePage = () => {
 
   return (
     <React.Fragment>
-      <div className="single-page">
-        <div className="container mx-auto">
-          <div className="post-card-list">
-            <ul className="">
-              {postData.map((post: Post) => (
-                <li key={post.id}>
-                  <NavLink to={setUrlParams(CONSTANT.ROUTE_URL.POST_ID, post.id)}>
-                    <SquareCode className="icon" />
-                    <h4 className="py-2 text-foreground">{post.title}</h4>
-                    {post.overview && <p className="text-justify">{post.overview}</p>}
-                  </NavLink>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
+      <Helmet>
+        <meta name="description" content={getEnv('UI_DESCRIPTION') as string} />
+      </Helmet>
+
+      <div className="mx-auto">
+        <ul className="card-list">
+          {postData.map((post: Post) => (
+            <li key={post.id} className="card-item">
+              <NavLink to={setUrlParams(CONSTANT.ROUTE_URL.POST_ID, post.id)}>
+                <Card className="h-full gap-0.5">
+                  <CardHeader>
+                    <CardTitle>{post.title}</CardTitle>
+                  </CardHeader>
+                  <CardDescription className="card-description">
+                    <div className="mb-2 text-[var(--descript-foreground)]">
+                      <small>
+                        <CalendarDays
+                          size={16}
+                          className="me-1 inline-block align-text-bottom"
+                        />
+                        {formatDay(post?.createdAt as string, 'date')}
+                      </small>
+                    </div>
+                    <div className="text-justify">{post.overview}</div>
+                  </CardDescription>
+                </Card>
+              </NavLink>
+            </li>
+          ))}
+        </ul>
       </div>
     </React.Fragment>
   )

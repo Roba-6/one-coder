@@ -1,5 +1,5 @@
-import './index.css'
 import '@/locales/configs'
+import './index.css'
 
 import { App, getAdminPath, store } from 'one-public-ui'
 import { StrictMode } from 'react'
@@ -8,6 +8,8 @@ import { HelmetProvider } from 'react-helmet-async'
 import { Provider } from 'react-redux'
 import { Route } from 'react-router'
 
+import Cursor from '@/common/components/atoms/cursor'
+import MouseStalker from '@/common/components/atoms/mouse-stalker'
 import CategoryEditPage from '@/features/admin/categories/pages/edit-page'
 import CategoryListPage from '@/features/admin/categories/pages/list-page'
 import AddPostPage from '@/features/admin/posts/pages/add-page'
@@ -55,6 +57,8 @@ createRoot(document.getElementById('root')!).render(
             },
           }}
         />
+        <Cursor />
+        <MouseStalker />
       </Provider>
     </HelmetProvider>
   </StrictMode>

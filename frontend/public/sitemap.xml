@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<urlset
+    xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+    <!-- Home -->
+    <url>
+        <loc>https://one-coder.com/</loc>
+        <lastmod>2026-06-30</lastmod>
+        <changefreq>daily</changefreq>
+        <priority>1.0</priority>
+    </url>
+
+    <!-- About -->
+<!--    <url>-->
+<!--        <loc>https://one-coder.com/about</loc>-->
+<!--        <lastmod>2026-06-30</lastmod>-->
+<!--        <changefreq>monthly</changefreq>-->
+<!--        <priority>0.7</priority>-->
+<!--    </url>-->
+
+    <!-- Posts -->
+    <url>
+        <loc>https://one-coder.com/posts/d8b634f1-fff4-441b-9ec4-2955f1448475</loc>
+        <lastmod>2026-06-25</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.9</priority>
+    </url>
+
+    <url>
+        <loc>https://one-coder.com/posts/95d9c63e-c912-491f-983d-1cdc8740b038</loc>
+        <lastmod>2026-06-29</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.9</priority>
+    </url>
+    <url>
+        <loc>https://one-coder.com/posts/f59e0a6e-992e-40b6-8632-2f30d982fdfc</loc>
+        <lastmod>2026-06-30</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.9</priority>
+    </url>
+    <url>
+        <loc>https://one-coder.com/posts/e27a3e4d-1c7a-4833-907b-4ee9d7bb4974</loc>
+        <lastmod>2026-07-01</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.9</priority>
+    </url>
+
+    <!-- Categories -->
+<!--    <url>-->
+<!--        <loc>https://one-coder.com/categories/python</loc>-->
+<!--        <lastmod>2026-06-30</lastmod>-->
+<!--        <changefreq>weekly</changefreq>-->
+<!--        <priority>0.8</priority>-->
+<!--    </url>-->
+
+<!--    <url>-->
+<!--        <loc>https://one-coder.com/categories/typescript</loc>-->
+<!--        <lastmod>2026-06-30</lastmod>-->
+<!--        <changefreq>weekly</changefreq>-->
+<!--        <priority>0.8</priority>-->
+<!--    </url>-->
+
+<!--    <url>-->
+<!--        <loc>https://one-coder.com/categories/aws</loc>-->
+<!--        <lastmod>2026-06-30</lastmod>-->
+<!--        <changefreq>weekly</changefreq>-->
+<!--        <priority>0.8</priority>-->
+<!--    </url>-->
+
+    <!-- Tags -->
+<!--    <url>-->
+<!--        <loc>https://one-coder.com/tags/docker</loc>-->
+<!--        <lastmod>2026-06-30</lastmod>-->
+<!--        <changefreq>weekly</changefreq>-->
+<!--        <priority>0.6</priority>-->
+<!--    </url>-->
+
+<!--    <url>-->
+<!--        <loc>https://one-coder.com/tags/fastapi</loc>-->
+<!--        <lastmod>2026-06-30</lastmod>-->
+<!--        <changefreq>weekly</changefreq>-->
+<!--        <priority>0.6</priority>-->
+<!--    </url>-->
+
+</urlset>
